@@ -1,4 +1,3 @@
-
 package CSC133;
 
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -24,6 +23,7 @@ public class slWindow {
     slWindow(int WIN_WIDTH, int WIN_HEIGHT) {
         this.WIN_WIDTH = WIN_WIDTH;
         this.WIN_HEIGHT = WIN_HEIGHT;
+        slWindow(WIN_WIDTH, WIN_HEIGHT); // prints call to slWindow class
         initGLFWindow();
     }
 
@@ -74,6 +74,8 @@ public class slWindow {
         glfwShowWindow(window);
 
     } // private void initGLFWindow()
+
+    // I guess I can call this in my slWindow constructor
     void slWindow(int win_width, int win_height) {
         System.out.println("Call to slWindow:: (width, height) == ("
                         + win_width + ", " + win_height +") received!");
