@@ -27,12 +27,15 @@ public class slSingleBatchRenderer {
     FloatBuffer myFloatBuffer = BufferUtils.createFloatBuffer(OGL_MATRIX_SIZE);
     int vpMatLocation = 0, renderColorLocation = 0;
 
-    CSC133.slWindow slWindow;
-    long window;
 
-    public slSingleBatchRenderer(CSC133.slWindow slWindow) {
-        this.window = slWindow.window;
-        this.slWindow = slWindow;
+    private long window;
+    private int WIN_WIDTH;
+    private int WIN_HEIGHT;
+
+    public slSingleBatchRenderer(long window, int win_width, int win_height) {
+        this.window = window;
+        this.WIN_WIDTH = win_width;
+        this.WIN_HEIGHT = win_height;
     }
 
     public void render() {
@@ -63,7 +66,7 @@ public class slSingleBatchRenderer {
         GL.createCapabilities();
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_CULL_FACE);
-        glViewport(0, 0, slWindow.WIN_WIDTH, slWindow.WIN_HEIGHT);
+        glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT);
 
         glClearColor(BG_RED, BG_GREEN, BG_BLUE, BG_ALPHA); // background color
 
