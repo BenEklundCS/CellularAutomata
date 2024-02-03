@@ -38,9 +38,6 @@ public class slSingleBatchRenderer {
     public void render() {
         try {
             renderLoop();
-            glfwDestroyWindow(window);
-            slWindow.keyCallback.free();
-            slWindow.fbCallback.free();
         } finally {
             glfwTerminate();
             glfwSetErrorCallback(null).free();
@@ -86,6 +83,7 @@ public class slSingleBatchRenderer {
         glShaderSource(fs,
                 "uniform vec3 color;" +
                         "void main(void) {" +
+                        // This guy sets the shape color :)
                         " gl_FragColor = vec4(1.0f, 0.1f, 0.6f, 1.0f);" + // gl_FragColor = vec4(0.7f, 0.5f, 0.1f, 1.0f);"
                         "}");
 

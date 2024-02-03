@@ -6,8 +6,12 @@ public class Main {
     static int WIN_WIDTH = 1800, WIN_HEIGHT = 1200;
 
     public static void main(String[] args) {
-        //new CSC133.slWindow().slWindow(WIN_WIDTH, WIN_HEIGHT);
         slWindow slWindow = new slWindow(WIN_WIDTH, WIN_HEIGHT);
-        new slSingleBatchRenderer(slWindow).render(); // all logic is currently here
+        slWindow.slWindowPrinter();
+        new slSingleBatchRenderer(slWindow).render(); // This was a good idea and is typically correct, but the
+                                                      // professor pointed out that this will lead to double context
+                                                      // creation issues in the future. Well done!
+        // Call some slWindow destroy method here??  YES BANG
+        slWindow.destroyGLFWindow();
     } // public static void main(String[] args)
 }

@@ -23,7 +23,6 @@ public class slWindow {
     slWindow(int WIN_WIDTH, int WIN_HEIGHT) {
         this.WIN_WIDTH = WIN_WIDTH;
         this.WIN_HEIGHT = WIN_HEIGHT;
-        slWindow(WIN_WIDTH, WIN_HEIGHT); // prints call to slWindow class
         initGLFWindow();
     }
 
@@ -75,9 +74,15 @@ public class slWindow {
 
     } // private void initGLFWindow()
 
+    public void destroyGLFWindow() {
+        glfwDestroyWindow(window);
+        keyCallback.free();
+        fbCallback.free();
+    }
+
     // I guess I can call this in my slWindow constructor
-    void slWindow(int win_width, int win_height) {
+    void slWindowPrinter() {
         System.out.println("Call to slWindow:: (width, height) == ("
-                        + win_width + ", " + win_height +") received!");
+                        + WIN_WIDTH + ", " + WIN_HEIGHT +") received!");
     }
 }
