@@ -1,17 +1,12 @@
 package CSC133;
 
-import slRenderer.slSingleBatchRenderer;
+import SlRenderer.SlSingleBatchRenderer;
 
 public class Main {
-    static int WIN_WIDTH = 1800, WIN_HEIGHT = 1200;
-
+    static int WIN_WIDTH = 1800, WIN_HEIGHT = 1200, WIN_POS_X = 30, WIN_POS_Y = 90;
     public static void main(String[] args) {
-        long window = slWindow.get(WIN_WIDTH, WIN_HEIGHT);
-        slWindow.slWindowPrinter();
-        new slSingleBatchRenderer(window, WIN_WIDTH, WIN_HEIGHT).render(); // This was a good idea and is typically correct, but the
-                                                      // professor pointed out that this will lead to double context
-                                                      // creation issues in the future. Well done!
-        // Call some slWindow destroy method here??  YES BANG
-        slWindow.destroyGLFWindow();
+        long window = SlWindow.get(WIN_WIDTH, WIN_HEIGHT, WIN_POS_X, WIN_POS_Y);
+        new SlSingleBatchRenderer(window).render();
+        SlWindow.destroyGLFWindow();
     } // public static void main(String[] args)
 }

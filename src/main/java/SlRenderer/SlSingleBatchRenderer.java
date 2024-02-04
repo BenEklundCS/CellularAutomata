@@ -1,5 +1,6 @@
-package slRenderer;
+package SlRenderer;
 
+import CSC133.SlWindow;
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
 
@@ -7,6 +8,7 @@ import org.lwjgl.opengl.GL;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import java.util.Objects;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
@@ -19,23 +21,18 @@ import static org.lwjgl.opengl.GL20.glUniform3f;
 
 // put render stuff here
 
-public class slSingleBatchRenderer {
+public class SlSingleBatchRenderer {
     private static final int OGL_MATRIX_SIZE = 16;
-    // call glCreateProgram() here - we have no gl-context here
-    int shader_program;
-    Matrix4f viewProjMatrix = new Matrix4f();
-    FloatBuffer myFloatBuffer = BufferUtils.createFloatBuffer(OGL_MATRIX_SIZE);
-    int vpMatLocation = 0, renderColorLocation = 0;
+    private final Matrix4f viewProjMatrix = new Matrix4f();
+    private final FloatBuffer myFloatBuffer = BufferUtils.createFloatBuffer(OGL_MATRIX_SIZE);
+    private int vpMatLocation = 0;
+    private final long window;
 
+    private final int WIN_WIDTH = SlWindow.getWinWidth();
+    private final int WIN_HEIGHT = SlWindow.getWinHeight();
 
-    private long window;
-    private int WIN_WIDTH;
-    private int WIN_HEIGHT;
-
-    public slSingleBatchRenderer(long window, int win_width, int win_height) {
+    public SlSingleBatchRenderer(long window) {
         this.window = window;
-        this.WIN_WIDTH = win_width;
-        this.WIN_HEIGHT = win_height;
     }
 
     public void render() {
@@ -43,7 +40,7 @@ public class slSingleBatchRenderer {
             renderLoop();
         } finally {
             glfwTerminate();
-            glfwSetErrorCallback(null).free();
+            Objects.requireNonNull(glfwSetErrorCallback(null)).free();
         }
     } // public void render()
 
@@ -70,7 +67,8 @@ public class slSingleBatchRenderer {
 
         glClearColor(BG_RED, BG_GREEN, BG_BLUE, BG_ALPHA); // background color
 
-        this.shader_program = glCreateProgram();
+        // call glCreateProgram() here - we have no gl-context here
+        int shader_program = glCreateProgram();
         int vs = glCreateShader(GL_VERTEX_SHADER);
 
         glShaderSource(vs,
@@ -100,12 +98,23 @@ public class slSingleBatchRenderer {
     void renderObjects() {
 
         while (!glfwWindowShouldClose(window)) {
+
             glfwPollEvents();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             int vbo = glGenBuffers();
             int ibo = glGenBuffers();
-            float[] vertices = {-20f, -20f, 20f, -20f, 20f, 20f, -20f, 20f};
-            int[] indices = {0, 1, 2, 0, 2, 3};
+
+            int rows = 150;
+            int cols = 150;
+
+            SlGridOfSquares grid = new SlGridOfSquares(rows, cols);
+            float[] vertices = grid.getVertices();
+            int[] indices = grid.getIndices();
+            //System.out.println(Arrays.toString(vertices));
+            //System.out.println(Arrays.toString(indices));
+            //System.out.println(CSC133.slWindow.getWinWidth());
+            //float[] vertices = {-20f, -20f, 20f, -20f, 20f, 20f, -20f, 20f};
+            //int[] indices = {0, 1, 2, 0, 2, 3};
 
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBufferData(GL_ARRAY_BUFFER, (FloatBuffer) BufferUtils.
@@ -117,10 +126,10 @@ public class slSingleBatchRenderer {
                     createIntBuffer(indices.length).
                     put(indices).flip(), GL_STATIC_DRAW);
 
-            final int LEFT = -100;
-            final int RIGHT = 100;
-            final int BOTTOM = -100;
-            final int TOP = 100;
+            final int LEFT = 0;
+            final int RIGHT = 200;
+            final int BOTTOM = 0;
+            final int TOP = 200;
             final int ZNEAR = 0;
             final int ZFAR = 10;
             final int SIZE = 2;
@@ -134,13 +143,15 @@ public class slSingleBatchRenderer {
             final float V1 = 0.498f;
             final float V2 = 0.153f;
 
+            int renderColorLocation = 0;
             glUniform3f(renderColorLocation, V0, V1, V2);
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
             int VTD = 6; // need to process 6 Vertices To Draw 2 triangles
-            final int COUNT = 6;
+            final int COUNT = indices.length;
             glDrawElements(GL_TRIANGLES, COUNT, GL_UNSIGNED_INT, 0L);
             glfwSwapBuffers(window);
         }
     } // renderObjects
+
 }
