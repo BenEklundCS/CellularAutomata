@@ -3,12 +3,9 @@ package SlRenderer;
 import CSC133.SlWindow;
 
 public class SlGridOfSquares {
-    // default
-    private int maxRows = 7;
-    private int maxCols = 5;
-    final int verticesPerSquare = 4;
-
-    private final int WIN_WIDTH = SlWindow.getWinWidth();
+    private final int maxRows;
+    private final int maxCols;
+    private final int verticesPerSquare = 4;
     private final int WIN_HEIGHT = SlWindow.getWinHeight();
 
     SlGridOfSquares(int maxRows, int maxCols) {
@@ -29,19 +26,16 @@ public class SlGridOfSquares {
 
         float[] vertices = new float[verticesPerSquare * floatsPerVertex * maxRows * maxCols];
 
-        float scaleX = 200f / WIN_WIDTH;
-        float scaleY = 200f / WIN_HEIGHT;
-
         for (int i = 0; i < maxRows; i++) {
             for (int j = 0; j < maxCols; j++) {
-                vertices[index++] = xmin * scaleX;
-                vertices[index++] = ymin * scaleY;
-                vertices[index++] = xmax * scaleX;
-                vertices[index++] = ymin * scaleY;
-                vertices[index++] = xmax * scaleX;
-                vertices[index++] = ymax * scaleY;
-                vertices[index++] = xmin * scaleX;
-                vertices[index++] = ymax * scaleY;
+                vertices[index++] = xmin;
+                vertices[index++] = ymin;
+                vertices[index++] = xmax;
+                vertices[index++] = ymin;
+                vertices[index++] = xmax;
+                vertices[index++] = ymax;
+                vertices[index++] = xmin;
+                vertices[index++] = ymax;
                 xmin = xmax + padding;
                 xmax = xmin + length;
             }

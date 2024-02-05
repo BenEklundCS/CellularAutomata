@@ -19,8 +19,6 @@ import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glUniform3f;
 
-// put render stuff here
-
 public class SlSingleBatchRenderer {
     private static final int OGL_MATRIX_SIZE = 16;
     private final Matrix4f viewProjMatrix = new Matrix4f();
@@ -104,15 +102,13 @@ public class SlSingleBatchRenderer {
             int vbo = glGenBuffers();
             int ibo = glGenBuffers();
 
-            int rows = 150;
-            int cols = 150;
+            int rows = 7;
+            int cols = 5;
 
             SlGridOfSquares grid = new SlGridOfSquares(rows, cols);
             float[] vertices = grid.getVertices();
             int[] indices = grid.getIndices();
-            //System.out.println(Arrays.toString(vertices));
-            //System.out.println(Arrays.toString(indices));
-            //System.out.println(CSC133.slWindow.getWinWidth());
+
             //float[] vertices = {-20f, -20f, 20f, -20f, 20f, 20f, -20f, 20f};
             //int[] indices = {0, 1, 2, 0, 2, 3};
 
@@ -127,15 +123,15 @@ public class SlSingleBatchRenderer {
                     put(indices).flip(), GL_STATIC_DRAW);
 
             final int LEFT = 0;
-            final int RIGHT = 200;
+            //final int RIGHT = WIN_WIDTH;
             final int BOTTOM = 0;
-            final int TOP = 200;
+            //final int TOP = WIN_HEIGHT;
             final int ZNEAR = 0;
             final int ZFAR = 10;
             final int SIZE = 2;
 
             glVertexPointer(SIZE, GL_FLOAT, 0, 0L);
-            viewProjMatrix.setOrtho(LEFT, RIGHT, BOTTOM, TOP, ZNEAR, ZFAR);
+            viewProjMatrix.setOrtho(LEFT, WIN_WIDTH, BOTTOM, WIN_HEIGHT, ZNEAR, ZFAR);
             glUniformMatrix4fv(vpMatLocation, false,
                     viewProjMatrix.get(myFloatBuffer));
 
