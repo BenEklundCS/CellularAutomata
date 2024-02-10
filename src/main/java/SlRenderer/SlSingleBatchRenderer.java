@@ -29,6 +29,10 @@ public class SlSingleBatchRenderer {
     private final int WIN_WIDTH = SlWindow.getWinWidth();
     private final int WIN_HEIGHT = SlWindow.getWinHeight();
 
+    private final int RIGHT = 200;
+    private final int TOP = 200;
+
+
     public SlSingleBatchRenderer(long window) {
         this.window = window;
     }
@@ -105,7 +109,7 @@ public class SlSingleBatchRenderer {
             int rows = 7;
             int cols = 5;
 
-            SlGridOfSquares grid = new SlGridOfSquares(rows, cols);
+            SlGridOfSquares grid = new SlGridOfSquares(rows, cols, RIGHT, TOP);
             float[] vertices = grid.getVertices();
             int[] indices = grid.getIndices();
 
@@ -123,15 +127,13 @@ public class SlSingleBatchRenderer {
                     put(indices).flip(), GL_STATIC_DRAW);
 
             final int LEFT = 0;
-            //final int RIGHT = WIN_WIDTH;
             final int BOTTOM = 0;
-            //final int TOP = WIN_HEIGHT;
             final int ZNEAR = 0;
             final int ZFAR = 10;
             final int SIZE = 2;
 
             glVertexPointer(SIZE, GL_FLOAT, 0, 0L);
-            viewProjMatrix.setOrtho(LEFT, WIN_WIDTH, BOTTOM, WIN_HEIGHT, ZNEAR, ZFAR);
+            viewProjMatrix.setOrtho(LEFT, RIGHT, BOTTOM, TOP, ZNEAR, ZFAR);
             glUniformMatrix4fv(vpMatLocation, false,
                     viewProjMatrix.get(myFloatBuffer));
 
@@ -149,5 +151,4 @@ public class SlSingleBatchRenderer {
             glfwSwapBuffers(window);
         }
     } // renderObjects
-
 }

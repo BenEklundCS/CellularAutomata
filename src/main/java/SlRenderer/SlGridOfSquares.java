@@ -7,16 +7,25 @@ public class SlGridOfSquares {
     private final int maxCols;
     private final int verticesPerSquare = 4;
     private final int WIN_HEIGHT = SlWindow.getWinHeight();
+    private final int WIN_WIDTH = SlWindow.getWinWidth();
+    private final int RIGHT;
+    private final int TOP;
 
-    SlGridOfSquares(int maxRows, int maxCols) {
+    SlGridOfSquares(int maxRows, int maxCols, int RIGHT, int TOP) {
         this.maxRows = maxRows;
         this.maxCols = maxCols;
+        this.RIGHT = RIGHT;
+        this.TOP = TOP;
     }
     public float[] getVertices() {
         final int floatsPerVertex = 2;
         final int length = 10;
         final int offset = 10;
         final int padding = 5;
+
+        float yScale = (float) TOP / WIN_HEIGHT;
+
+        float xScale = (float) RIGHT / WIN_WIDTH;
 
         float xmin = offset;
         float xmax = xmin + length;
@@ -28,14 +37,14 @@ public class SlGridOfSquares {
 
         for (int i = 0; i < maxRows; i++) {
             for (int j = 0; j < maxCols; j++) {
-                vertices[index++] = xmin;
-                vertices[index++] = ymin;
-                vertices[index++] = xmax;
-                vertices[index++] = ymin;
-                vertices[index++] = xmax;
-                vertices[index++] = ymax;
-                vertices[index++] = xmin;
-                vertices[index++] = ymax;
+                vertices[index++] = xmin * xScale;
+                vertices[index++] = ymin * yScale;
+                vertices[index++] = xmax * xScale;
+                vertices[index++] = ymin * yScale;
+                vertices[index++] = xmax * xScale;
+                vertices[index++] = ymax * yScale;
+                vertices[index++] = xmin * xScale;
+                vertices[index++] = ymax * yScale;
                 xmin = xmax + padding;
                 xmax = xmin + length;
             }
