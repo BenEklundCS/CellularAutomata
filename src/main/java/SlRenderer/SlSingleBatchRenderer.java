@@ -29,10 +29,6 @@ public class SlSingleBatchRenderer {
     private final int WIN_WIDTH = SlWindow.getWinWidth();
     private final int WIN_HEIGHT = SlWindow.getWinHeight();
 
-    private final int RIGHT = 200;
-    private final int TOP = 200;
-
-
     public SlSingleBatchRenderer(long window) {
         this.window = window;
     }
@@ -108,6 +104,9 @@ public class SlSingleBatchRenderer {
 
             int rows = 7;
             int cols = 5;
+
+            final int RIGHT = 200;
+            final int TOP = 200;
 
             SlGridOfSquares grid = new SlGridOfSquares(rows, cols, RIGHT, TOP);
             float[] vertices = grid.getVertices();
