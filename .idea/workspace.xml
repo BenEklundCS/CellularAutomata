@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="Scaling implemented to SlGridOfSquares">
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="pre-assignment3 state">
+      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/Main_Old.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/slGoLBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/slGoLBoardLive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +43,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Shapes-RIF" />
+        <entry key="$PROJECT_DIR$" value="Assignment2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,8 +65,8 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Assignment2&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ben/Programming/CSC 140/Advanced Algorithms&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Assignment3&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ben/Programming/CSC 133/Assignment/src/main/java/CSC133&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -78,13 +80,16 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/CSC133" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/CSC133" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="CSC133.Main" />
+    <configuration name="Main_Old" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CSC133.Main_Old" />
       <module name="Assignment.main" />
       <extension name="coverage">
         <pattern>
@@ -98,7 +103,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main_Old" />
       </list>
     </recent_temporary>
   </component>
@@ -141,7 +146,9 @@
       <workItem from="1707876606653" duration="410000" />
       <workItem from="1708018657875" duration="9000" />
       <workItem from="1708018847603" duration="328000" />
-      <workItem from="1708047007799" duration="1202000" />
+      <workItem from="1708047007799" duration="1875000" />
+      <workItem from="1708049145562" duration="1083000" />
+      <workItem from="1708053743782" duration="2663000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -191,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707528386615</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="pre-assignment3 state">
+      <option name="closed" value="true" />
+      <created>1708048364253</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1708048364253</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +231,8 @@
     <MESSAGE value="singleton slWindow implemented" />
     <MESSAGE value="GRID WORKS!" />
     <MESSAGE value="Scaling implemented to SlGridOfSquares" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scaling implemented to SlGridOfSquares" />
+    <MESSAGE value="pre-assignment3 state" />
+    <option name="LAST_COMMIT_MESSAGE" value="pre-assignment3 state" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
