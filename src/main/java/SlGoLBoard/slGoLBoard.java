@@ -1,13 +1,13 @@
-package CSC133;
+package SlGoLBoard;
 
 import java.util.Random;
-public abstract class slGoLBoard {
-    public int NUM_ROWS;
-    public int NUM_COLS;
+abstract class slGoLBoard {
+    protected int NUM_ROWS;
+    protected int NUM_COLS;
 
-    public boolean[][]  cellArrayA, cellArrayB, liveCellArray, nextCellArray;
+    protected boolean[][] cellArrayA, cellArrayB, liveCellArray, nextCellArray;
 
-    public slGoLBoard(int numRows, int numCols) {
+    protected slGoLBoard(int numRows, int numCols) {
         NUM_ROWS = numRows;
         NUM_COLS = numCols;
         cellArrayA = new boolean[NUM_ROWS][NUM_COLS];
@@ -26,7 +26,7 @@ public abstract class slGoLBoard {
 
     // Create a Board with a given number of cells alive - the alive cells
     // are placed randomly placed applying Durstenfeld-Knuth random shuffling
-    private slGoLBoard(int numRows, int numCols, int numAlive) {
+    protected slGoLBoard(int numRows, int numCols, int numAlive) {
         NUM_ROWS = numRows;
         NUM_COLS = numCols;
         boolean[] tmpArray = new boolean[NUM_ROWS * NUM_COLS];
@@ -60,10 +60,10 @@ public abstract class slGoLBoard {
     }  //  public slGoLBoard(int numRows, int numCols, int numAlive)
 
 
-    public boolean[][] getLiveCellArray() {
+    protected boolean[][] getLiveCellArray() {
         return liveCellArray;
     }
-    public boolean[][] getNextCellArray() {
+    private boolean[][] getNextCellArray() {
         return nextCellArray;
     }
 
@@ -92,10 +92,10 @@ public abstract class slGoLBoard {
         return;
     }  //  void copyLiveToNext()
 
-    public void printGoLBoard() {
+    protected void printGoLBoard() {
         for (boolean[] my_row : liveCellArray) {
             for (boolean my_val : my_row) {
-                if (my_val == true) {
+                if (my_val) {
                     System.out.print(1 + " ");
                 } else {
                     System.out.print(0 + " ");
@@ -105,8 +105,8 @@ public abstract class slGoLBoard {
         }  //  for (bool[] my_row : my_array)
     }  //  void printGoLBoard()
 
-    public abstract int countLiveTwoDegreeNeighbors(int row, int col);
-    public abstract int updateNextCellArray();
+    protected abstract int countLiveTwoDegreeNeighbors(int row, int col);
+    protected abstract int updateNextCellArray();
 
 }  //  public class slGoLBoard
 

@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="pre-assignment3 state">
-      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/Main_Old.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/slGoLBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/slGoLBoardLive.java" afterDir="false" />
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="assignment3 done">
+      <change afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Main_Old.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/slGoLBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/slGoLBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/slGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/slGoLBoardLive.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,12 +89,12 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main_Old" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="CSC133.Main_Old" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CSC133.Main" />
       <module name="Assignment.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="CSC133.*" />
+          <option name="PATTERN" value="SlGoLBoard.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -148,7 +149,8 @@
       <workItem from="1708018847603" duration="328000" />
       <workItem from="1708047007799" duration="1875000" />
       <workItem from="1708049145562" duration="1083000" />
-      <workItem from="1708053743782" duration="2663000" />
+      <workItem from="1708053743782" duration="4037000" />
+      <workItem from="1708093480612" duration="9426000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -206,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708048364253</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="assignment3 done">
+      <option name="closed" value="true" />
+      <created>1708056427893</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1708056427893</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +242,8 @@
     <MESSAGE value="GRID WORKS!" />
     <MESSAGE value="Scaling implemented to SlGridOfSquares" />
     <MESSAGE value="pre-assignment3 state" />
-    <option name="LAST_COMMIT_MESSAGE" value="pre-assignment3 state" />
+    <MESSAGE value="assignment3 done" />
+    <option name="LAST_COMMIT_MESSAGE" value="assignment3 done" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

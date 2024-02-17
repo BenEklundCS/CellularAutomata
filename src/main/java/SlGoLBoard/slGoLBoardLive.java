@@ -1,27 +1,31 @@
-package CSC133;
+package SlGoLBoard;
 
 public class slGoLBoardLive extends slGoLBoard {
+
     public slGoLBoardLive(int numRows, int numCols) {
         super(numRows, numCols);
     }
-
     @Override
     public int countLiveTwoDegreeNeighbors(int row, int col) {
-        int count = 0;
         boolean[][] liveCellArray = getLiveCellArray();
-        int rows = liveCellArray.length, cols = liveCellArray[0].length;
-        for (int i = -1; i <= 1; i++) {
-            for (int j = -1; j <= 1; j++) {
+
+        int count = 0, start = -1;
+
+        for (int i = start; i <= 1; i++) {
+            for (int j = start; j <= 1; j++) {
                 if (i != 0 || j != 0) {
-                    int newRow = row + i;
-                    int newCol = col + j;
-                    if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
-                        count += getLiveCellArray()[newRow][newCol] ? 1 : 0;
+                    // Solution
+                    int newRow = (row + i + NUM_ROWS) % NUM_ROWS;
+                    int newCol = (col + j + NUM_COLS) % NUM_COLS;
+                    if (newRow >= 0 && newRow < NUM_ROWS && newCol >= 0 && newCol < NUM_COLS) {
+                        if (liveCellArray[newRow][newCol])
+                            count++;
                     }
+                    //System.out.println("(" + newRow + ", " + newCol + ")");
                 }
             }
         }
-        return count; // double counted
+        return count;
     }
 
     // return how many live cells are in the updated board
