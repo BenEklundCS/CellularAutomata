@@ -1,7 +1,6 @@
 package CSC133;
 
 import SlRenderer.SlSingleBatchRenderer;
-import SlGoLBoard.slGoLBoardLive;
 
 public class Main {
     static int WIN_WIDTH = 1800, WIN_HEIGHT = 1200, WIN_POS_X = 30, WIN_POS_Y = 90;

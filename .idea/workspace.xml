@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="assignment3 done">
-      <change afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" afterDir="false" />
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="solved">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Main_Old.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/slGoLBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/slGoLBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/slGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/slGoLBoardLive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/slGoLBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/slGoLBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/slGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/slGoLBoardLive.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +148,7 @@
       <workItem from="1708047007799" duration="1875000" />
       <workItem from="1708049145562" duration="1083000" />
       <workItem from="1708053743782" duration="4037000" />
-      <workItem from="1708093480612" duration="9426000" />
+      <workItem from="1708093480612" duration="11102000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -216,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708056427893</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="solved">
+      <option name="closed" value="true" />
+      <created>1708133888485</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708133888485</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +249,8 @@
     <MESSAGE value="Scaling implemented to SlGridOfSquares" />
     <MESSAGE value="pre-assignment3 state" />
     <MESSAGE value="assignment3 done" />
-    <option name="LAST_COMMIT_MESSAGE" value="assignment3 done" />
+    <MESSAGE value="solved" />
+    <option name="LAST_COMMIT_MESSAGE" value="solved" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

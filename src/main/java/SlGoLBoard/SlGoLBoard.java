@@ -1,13 +1,13 @@
 package SlGoLBoard;
 
 import java.util.Random;
-abstract class slGoLBoard {
+abstract class SlGoLBoard {
     protected int NUM_ROWS;
     protected int NUM_COLS;
 
-    protected boolean[][] cellArrayA, cellArrayB, liveCellArray, nextCellArray;
+    private boolean[][] cellArrayA, cellArrayB, liveCellArray, nextCellArray;
 
-    protected slGoLBoard(int numRows, int numCols) {
+    protected SlGoLBoard(int numRows, int numCols) {
         NUM_ROWS = numRows;
         NUM_COLS = numCols;
         cellArrayA = new boolean[NUM_ROWS][NUM_COLS];
@@ -26,7 +26,7 @@ abstract class slGoLBoard {
 
     // Create a Board with a given number of cells alive - the alive cells
     // are placed randomly placed applying Durstenfeld-Knuth random shuffling
-    protected slGoLBoard(int numRows, int numCols, int numAlive) {
+    private SlGoLBoard(int numRows, int numCols, int numAlive) {
         NUM_ROWS = numRows;
         NUM_COLS = numCols;
         boolean[] tmpArray = new boolean[NUM_ROWS * NUM_COLS];
@@ -63,7 +63,7 @@ abstract class slGoLBoard {
     protected boolean[][] getLiveCellArray() {
         return liveCellArray;
     }
-    private boolean[][] getNextCellArray() {
+    protected boolean[][] getNextCellArray() {
         return nextCellArray;
     }
 

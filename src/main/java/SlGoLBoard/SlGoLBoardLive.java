@@ -1,8 +1,8 @@
 package SlGoLBoard;
 
-public class slGoLBoardLive extends slGoLBoard {
+public class SlGoLBoardLive extends SlGoLBoard {
 
-    public slGoLBoardLive(int numRows, int numCols) {
+    public SlGoLBoardLive(int numRows, int numCols) {
         super(numRows, numCols);
     }
     @Override
@@ -40,6 +40,10 @@ public class slGoLBoardLive extends slGoLBoard {
 
     @Override
     public int updateNextCellArray() {
+
+        boolean[][] liveCellArray = getLiveCellArray();
+        boolean[][] nextCellArray = getNextCellArray();
+
         int retVal = 0;
 
         int nln = 0;  // Number Live Neighbors
@@ -51,11 +55,13 @@ public class slGoLBoardLive extends slGoLBoard {
                 if (!ccs && nln == 3) {
                     nextCellArray[row][col] = true;
                     ++retVal;
-                } else {
+                }
+                else {
                     // Current Cell Status is true
                     if (nln < 2 || nln > 3) {
                         nextCellArray[row][col] = false;
-                    } else {
+                    }
+                    else {
                         // nln == 2 || nln == 3
                         nextCellArray[row][col] = true;
                         ++retVal;
