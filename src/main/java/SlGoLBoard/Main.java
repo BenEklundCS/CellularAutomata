@@ -63,9 +63,6 @@ public class Main {
         System.out.println();
         System.out.println("updateNextCellArray() --> ");
         my_board.printGoLBoard();
-        my_board.updateNextCellArray();
-        System.out.println();
-        my_board.printGoLBoard();
     } // private static void test_5() {
 } // public class Main {
 

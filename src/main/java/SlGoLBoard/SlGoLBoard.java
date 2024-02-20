@@ -4,7 +4,7 @@ import java.util.Random;
 abstract class SlGoLBoard {
     protected int NUM_ROWS;
     protected int NUM_COLS;
-    private boolean[][] cellArrayA, cellArrayB, liveCellArray, nextCellArray;
+    protected boolean[][] cellArrayA, cellArrayB, liveCellArray, nextCellArray;
 
     protected SlGoLBoard(int numRows, int numCols) {
         NUM_ROWS = numRows;
@@ -82,7 +82,7 @@ abstract class SlGoLBoard {
         }
     }  //  void setAllCells()
 
-    private void copyLiveToNext() {
+    protected void copyLiveToNext() {
         for (int row = 0; row < liveCellArray.length; ++row){
             for (int col = 0; col < liveCellArray[row].length; ++col) {
                 nextCellArray[row][col] = liveCellArray[row][col];

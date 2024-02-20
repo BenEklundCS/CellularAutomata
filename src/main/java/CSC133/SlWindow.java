@@ -11,7 +11,6 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 // put window stuff here
 public class SlWindow {
     private static int WIN_WIDTH = 1800, WIN_HEIGHT = 1200, WIN_POS_X = 30, WIN_POS_Y = 90; // (30, 90)
-    //public long window;
     private static long window = NULL;
     private static GLFWKeyCallback keyCallback;
     private static GLFWFramebufferSizeCallback fbCallback;
