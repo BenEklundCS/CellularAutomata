@@ -80,26 +80,25 @@ public class SlWindow {
         int VSYNC_INTERVAL = 1;
         glfwSwapInterval(VSYNC_INTERVAL);
         glfwShowWindow(window);
-
     } // private void initGLFWindow()
 
     public static void destroyGLFWindow() {
         glfwDestroyWindow(window);
         keyCallback.free();
         fbCallback.free();
-    }
+    } // public static void destroyGLFWindow() {
 
     public static int getWinWidth() {
         return WIN_WIDTH;
-    }
+    } // public static int getWinWidth() {
 
     public static int getWinHeight() {
         return WIN_HEIGHT;
-    }
+    } // public static int getWinHeight() {
 
     // I guess I can call this in my slWindow constructor
     private static void slWindowPrinter() {
         System.out.println("Call to slWindow:: (width, height) == ("
                         + WIN_WIDTH + ", " + WIN_HEIGHT +") received!");
     } // static void slWindowPrinter()
-}
+} // public class SlWindow {

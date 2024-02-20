@@ -9,4 +9,4 @@ public class Main {
         new SlSingleBatchRenderer(window).render();
         SlWindow.destroyGLFWindow();
     } // public static void main(String[] args)
-}
+} // public class Main {

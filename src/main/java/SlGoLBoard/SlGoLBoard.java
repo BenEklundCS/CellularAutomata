@@ -4,7 +4,6 @@ import java.util.Random;
 abstract class SlGoLBoard {
     protected int NUM_ROWS;
     protected int NUM_COLS;
-
     private boolean[][] cellArrayA, cellArrayB, liveCellArray, nextCellArray;
 
     protected SlGoLBoard(int numRows, int numCols) {
@@ -62,18 +61,18 @@ abstract class SlGoLBoard {
 
     protected boolean[][] getLiveCellArray() {
         return liveCellArray;
-    }
+    } // protected boolean[][] getLiveCellArray() {
     protected boolean[][] getNextCellArray() {
         return nextCellArray;
-    }
+    } // protected boolean[][] getNextCellArray() {
 
-    private void setCellAlive(int row, int col){
+    private void setCellAlive(int row, int col) {
         liveCellArray[row][col] = true;
-    }
+    } // private void setCellAlive(int row, int col) {
 
-    private void setCellDead(int row, int col){
+    private void setCellDead(int row, int col) {
         liveCellArray[row][col] = false;
-    }
+    } // private void setCellDead(int row, int col) {
 
     private void setAllCells(boolean value) {
         for (boolean[] rows : liveCellArray) {

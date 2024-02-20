@@ -150,4 +150,4 @@ public class SlSingleBatchRenderer {
             glfwSwapBuffers(window);
         }
     } // renderObjects
-}
+} // public class SlSingleBatchRenderer {

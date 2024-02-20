@@ -19,6 +19,7 @@ public class SlGoLBoardLive extends SlGoLBoard {
                     int newCol = (col + j + NUM_COLS) % NUM_COLS;
                     if (newRow >= 0 && newRow < NUM_ROWS && newCol >= 0 && newCol < NUM_COLS) {
                         if (liveCellArray[newRow][newCol])
+
                             count++;
                     }
                     //System.out.println("(" + newRow + ", " + newCol + ")");
@@ -26,7 +27,7 @@ public class SlGoLBoardLive extends SlGoLBoard {
             }
         }
         return count;
-    }
+    } // public int countLiveTwoDegreeNeighbors(int row, int col) {
 
     // return how many live cells are in the updated board
 
@@ -40,7 +41,6 @@ public class SlGoLBoardLive extends SlGoLBoard {
 
     @Override
     public int updateNextCellArray() {
-
         boolean[][] liveCellArray = getLiveCellArray();
         boolean[][] nextCellArray = getNextCellArray();
 
@@ -75,5 +75,5 @@ public class SlGoLBoardLive extends SlGoLBoard {
         nextCellArray = tmp;
 
         return retVal;
-    }  //  int updateNextCellArray()
-}
+    }  // public int updateNextCellArray()
+} // public class SlGoLBoardLive extends SlGoLBoard {

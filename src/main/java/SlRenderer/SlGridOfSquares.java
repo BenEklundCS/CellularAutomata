@@ -16,7 +16,7 @@ public class SlGridOfSquares {
         this.MAX_COLS = maxCols;
         this.RIGHT = RIGHT;
         this.TOP = TOP;
-    }
+    } // SlGridOfSquares(int maxRows, int maxCols, int RIGHT, int TOP) {
 
     public float[] getVertices() {
         final int floatsPerVertex = 2;
@@ -55,7 +55,7 @@ public class SlGridOfSquares {
             yMin = yMax - length;
         }
         return vertices;
-    }
+    } // public float[] getVertices() {
 
     public int[] getIndices() {
         final int indicesPerSquare = 6;
@@ -73,5 +73,5 @@ public class SlGridOfSquares {
             vIndex += VERTICES_PER_SQUARE;
         }
         return indices;
-    }
-}
+    } // public int[] getIndices() {
+} // public class SlGridOfSquares {
