@@ -1,5 +1,6 @@
 package SlRenderer;
 
+import CSC133.SlCamera;
 import CSC133.SlWindow;
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
@@ -19,27 +20,26 @@ import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glUniform3f;
 
+import static CSC133.Spot.*;
+
 public class SlSingleBatchRenderer {
     private static final int OGL_MATRIX_SIZE = 16;
-    private final Matrix4f viewProjMatrix = new Matrix4f();
     private final FloatBuffer myFloatBuffer = BufferUtils.createFloatBuffer(OGL_MATRIX_SIZE);
     private int vpMatLocation = 0;
-    private final long window;
 
-    private final int WIN_WIDTH = SlWindow.getWinWidth();
-    private final int WIN_HEIGHT = SlWindow.getWinHeight();
+    public SlSingleBatchRenderer() {
 
-    public SlSingleBatchRenderer(long window) {
-        this.window = window;
     }
 
     public void render() {
+        WINDOW = SlWindow.get(WIN_WIDTH, WIN_HEIGHT, WIN_POS_X, WIN_POS_Y);
         try {
             renderLoop();
         } finally {
             glfwTerminate();
             Objects.requireNonNull(glfwSetErrorCallback(null)).free();
         }
+        SlWindow.destroyGLFWindow();
     } // public void render()
 
     void renderLoop() {
@@ -47,7 +47,7 @@ public class SlSingleBatchRenderer {
         initOpenGL();
         renderObjects();
         /* Process window messages in the main thread */
-        while (!glfwWindowShouldClose(window)) {
+        while (!glfwWindowShouldClose(WINDOW)) {
             glfwWaitEvents();
         }
     } // void renderLoop()
@@ -95,25 +95,19 @@ public class SlSingleBatchRenderer {
     } // void initOpenGL()
     void renderObjects() {
 
-        while (!glfwWindowShouldClose(window)) {
+        while (!glfwWindowShouldClose(WINDOW)) {
 
             glfwPollEvents();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             int vbo = glGenBuffers();
             int ibo = glGenBuffers();
 
-            int rows = 7;
-            int cols = 5;
+            int rows = 20;
+            int cols = 18;
 
-            final int RIGHT = 200;
-            final int TOP = 200;
-
-            SlGridOfSquares grid = new SlGridOfSquares(rows, cols, RIGHT, TOP);
+            SlGridOfSquares grid = new SlGridOfSquares(rows, cols);
             float[] vertices = grid.getVertices();
             int[] indices = grid.getIndices();
-
-            //float[] vertices = {-20f, -20f, 20f, -20f, 20f, 20f, -20f, 20f};
-            //int[] indices = {0, 1, 2, 0, 2, 3};
 
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBufferData(GL_ARRAY_BUFFER, (FloatBuffer) BufferUtils.
@@ -125,14 +119,16 @@ public class SlSingleBatchRenderer {
                     createIntBuffer(indices.length).
                     put(indices).flip(), GL_STATIC_DRAW);
 
-            final int LEFT = 0;
-            final int BOTTOM = 0;
-            final int ZNEAR = 0;
-            final int ZFAR = 10;
             final int SIZE = 2;
 
             glVertexPointer(SIZE, GL_FLOAT, 0, 0L);
-            viewProjMatrix.setOrtho(LEFT, RIGHT, BOTTOM, TOP, ZNEAR, ZFAR);
+
+            // Camera implementation
+
+            SlCamera camera = new SlCamera();
+            camera.setProjectionOrtho();
+            Matrix4f viewProjMatrix = camera.getProjectionMatrix();
+
             glUniformMatrix4fv(vpMatLocation, false,
                     viewProjMatrix.get(myFloatBuffer));
 
@@ -147,7 +143,7 @@ public class SlSingleBatchRenderer {
             int VTD = 6; // need to process 6 Vertices To Draw 2 triangles
             final int COUNT = indices.length;
             glDrawElements(GL_TRIANGLES, COUNT, GL_UNSIGNED_INT, 0L);
-            glfwSwapBuffers(window);
+            glfwSwapBuffers(WINDOW);
         }
     } // renderObjects
 } // public class SlSingleBatchRenderer {

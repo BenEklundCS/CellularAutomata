@@ -1,7 +1,5 @@
 package SlGoLBoard;
 
-import java.awt.*;
-
 public class Main {
     private static SlGoLBoardLive my_board;
     private static final int ROWS = 7, COLS = 9;
@@ -61,7 +59,7 @@ public class Main {
         int dashLength = COLS * 2;
         for (int i = 0; i < dashLength; i++) System.out.print("-");
         System.out.println();
-        System.out.println("updateNextCellArray() --> ");
+        System.out.println("updateNextCellArray() --> Updated " + updates + " cells.");
         my_board.printGoLBoard();
     } // private static void test_5() {
 } // public class Main {
