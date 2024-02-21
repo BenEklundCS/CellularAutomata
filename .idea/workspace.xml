@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="updates --&gt; Assignment 4">
-      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlCamera.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" afterDir="false" />
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="camera works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlCamera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlCamera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
     </list>
@@ -90,7 +87,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/CSC133" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CSC133.Main" />
       <module name="Assignment.main" />
@@ -177,7 +174,10 @@
       <workItem from="1708395358855" duration="1049000" />
       <workItem from="1708459080039" duration="397000" />
       <workItem from="1708465542412" duration="992000" />
-      <workItem from="1708478044671" duration="4612000" />
+      <workItem from="1708478044671" duration="4690000" />
+      <workItem from="1708486522316" duration="396000" />
+      <workItem from="1708489266015" duration="599000" />
+      <workItem from="1708526975072" duration="595000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -267,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708395890784</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="camera works">
+      <option name="closed" value="true" />
+      <created>1708482996067</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708482996067</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,7 +305,8 @@
     <MESSAGE value="solved" />
     <MESSAGE value="caps" />
     <MESSAGE value="updates --&gt; Assignment 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates --&gt; Assignment 4" />
+    <MESSAGE value="camera works" />
+    <option name="LAST_COMMIT_MESSAGE" value="camera works" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

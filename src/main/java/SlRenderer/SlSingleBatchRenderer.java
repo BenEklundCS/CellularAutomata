@@ -26,9 +26,10 @@ public class SlSingleBatchRenderer {
     private static final int OGL_MATRIX_SIZE = 16;
     private final FloatBuffer myFloatBuffer = BufferUtils.createFloatBuffer(OGL_MATRIX_SIZE);
     private int vpMatLocation = 0;
+    SlCamera camera = new SlCamera();
 
     public SlSingleBatchRenderer() {
-
+        slSingleBatchPrinter();
     }
 
     public void render() {
@@ -105,7 +106,7 @@ public class SlSingleBatchRenderer {
             int rows = 20;
             int cols = 18;
 
-            SlGridOfSquares grid = new SlGridOfSquares(rows, cols);
+            SlGridOfSquares grid = new SlGridOfSquares(rows, cols, camera.getRight(), camera.getTop());
             float[] vertices = grid.getVertices();
             int[] indices = grid.getIndices();
 
@@ -125,7 +126,6 @@ public class SlSingleBatchRenderer {
 
             // Camera implementation
 
-            SlCamera camera = new SlCamera();
             camera.setProjectionOrtho();
             Matrix4f viewProjMatrix = camera.getProjectionMatrix();
 
@@ -146,4 +146,7 @@ public class SlSingleBatchRenderer {
             glfwSwapBuffers(WINDOW);
         }
     } // renderObjects
+    private void slSingleBatchPrinter() {
+        System.out.println("Call to slSingleBatchRenderer:: () == received!");
+    }
 } // public class SlSingleBatchRenderer {

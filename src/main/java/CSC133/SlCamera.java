@@ -3,6 +3,9 @@ package CSC133;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
+import static CSC133.Spot.WIN_HEIGHT;
+import static CSC133.Spot.WIN_WIDTH;
+
 public class SlCamera {
     private final Matrix4f viewProjMatrix = new Matrix4f();
     private final Matrix4f viewMatrix = new Matrix4f();
@@ -28,7 +31,7 @@ public class SlCamera {
     }
 
     public SlCamera() {
-
+        slCameraPrinter();
     }
 
     public void setProjectionOrtho() {
@@ -45,11 +48,23 @@ public class SlCamera {
         setProjectionOrtho();
     }
 
+    public float getRight() {
+        return f_right;
+    }
+
+    public float getTop() {
+        return f_top;
+    }
+
     public Matrix4f getViewMatrix() {
         return viewMatrix;
     }
 
     public Matrix4f getProjectionMatrix() {
         return viewProjMatrix;
+    }
+
+    private void slCameraPrinter() {
+        System.out.println("Call to slCamera:: () == received!");
     }
 }
