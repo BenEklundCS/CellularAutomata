@@ -20,11 +20,11 @@ public class SlGridOfSquares {
         final int floatsPerVertex = 2;
         final int length = 30;
         final int offset = 10;
-        final int padding = 10;
+        final int padding = 15;
 
-        float yScale = (float) TOP / WIN_HEIGHT;
+        float yScale = TOP / WIN_HEIGHT;
 
-        float xScale = (float) RIGHT / WIN_WIDTH;
+        float xScale = RIGHT / WIN_WIDTH;
 
         float xMin = offset;
         float xMax = xMin + length;

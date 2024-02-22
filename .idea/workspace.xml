@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="camera works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlCamera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlCamera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
     </list>
@@ -117,6 +117,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.SlGoLBoard.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.SlGoLBoard.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.SlGoLBoard.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -178,6 +182,10 @@
       <workItem from="1708486522316" duration="396000" />
       <workItem from="1708489266015" duration="599000" />
       <workItem from="1708526975072" duration="595000" />
+      <workItem from="1708558021306" duration="2000" />
+      <workItem from="1708558667690" duration="373000" />
+      <workItem from="1708560263347" duration="306000" />
+      <workItem from="1708567051330" duration="1959000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />

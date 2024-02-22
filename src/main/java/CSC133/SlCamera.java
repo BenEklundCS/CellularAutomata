@@ -3,9 +3,6 @@ package CSC133;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import static CSC133.Spot.WIN_HEIGHT;
-import static CSC133.Spot.WIN_WIDTH;
-
 public class SlCamera {
     private final Matrix4f viewProjMatrix = new Matrix4f();
     private final Matrix4f viewMatrix = new Matrix4f();
@@ -31,7 +28,7 @@ public class SlCamera {
     }
 
     public SlCamera() {
-        slCameraPrinter();
+
     }
 
     public void setProjectionOrtho() {

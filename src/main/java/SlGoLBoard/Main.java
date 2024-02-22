@@ -1,7 +1,7 @@
 package SlGoLBoard;
 
 public class Main {
-    private static SlGoLBoardLive my_board;
+    private static SlGoLBoard my_board;
     private static final int ROWS = 7, COLS = 9;
     public static void main(String[] args) {
         test_1(); // print TwoDegreeNeighbors(0,0)
@@ -63,11 +63,3 @@ public class Main {
         my_board.printGoLBoard();
     } // private static void test_5() {
 } // public class Main {
-
-
-
-
-
-
-
-

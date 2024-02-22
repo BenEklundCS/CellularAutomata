@@ -26,7 +26,6 @@ public class SlSingleBatchRenderer {
     private static final int OGL_MATRIX_SIZE = 16;
     private final FloatBuffer myFloatBuffer = BufferUtils.createFloatBuffer(OGL_MATRIX_SIZE);
     private int vpMatLocation = 0;
-    SlCamera camera = new SlCamera();
 
     public SlSingleBatchRenderer() {
         slSingleBatchPrinter();
@@ -67,6 +66,7 @@ public class SlSingleBatchRenderer {
         glClearColor(BG_RED, BG_GREEN, BG_BLUE, BG_ALPHA); // background color
 
         // call glCreateProgram() here - we have no gl-context here
+
         int shader_program = glCreateProgram();
         int vs = glCreateShader(GL_VERTEX_SHADER);
 
@@ -106,6 +106,11 @@ public class SlSingleBatchRenderer {
             int rows = 20;
             int cols = 18;
 
+            //
+            // Vertices / Indices generation and glBuffer
+            //
+
+            SlCamera camera = new SlCamera(); // Initialize camera here to use right/top for SlGridOfSquares scaling
             SlGridOfSquares grid = new SlGridOfSquares(rows, cols, camera.getRight(), camera.getTop());
             float[] vertices = grid.getVertices();
             int[] indices = grid.getIndices();
@@ -124,7 +129,9 @@ public class SlSingleBatchRenderer {
 
             glVertexPointer(SIZE, GL_FLOAT, 0, 0L);
 
-            // Camera implementation
+            //
+            // Use the camera to setProjectionOrtho and generate a viewProjMatrix
+            //
 
             camera.setProjectionOrtho();
             Matrix4f viewProjMatrix = camera.getProjectionMatrix();
