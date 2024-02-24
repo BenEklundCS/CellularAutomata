@@ -87,14 +87,6 @@ public class SlWindow {
         fbCallback.free();
     } // public static void destroyGLFWindow() {
 
-    public static int getWinWidth() {
-        return WIN_WIDTH;
-    } // public static int getWinWidth() {
-
-    public static int getWinHeight() {
-        return WIN_HEIGHT;
-    } // public static int getWinHeight() {
-
     // I guess I can call this in my slWindow constructor
     private static void slWindowPrinter() {
         System.out.println("Call to slWindow:: (width, height) == ("

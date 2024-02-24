@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="update before moving down to assignment3">
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="Window get inside SlSingleBatchRenderer, and variables renamed across my renderer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlCamera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlCamera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
     </list>
@@ -190,7 +189,9 @@
       <workItem from="1708558667690" duration="373000" />
       <workItem from="1708560263347" duration="306000" />
       <workItem from="1708567051330" duration="1959000" />
-      <workItem from="1708732452618" duration="4481000" />
+      <workItem from="1708732452618" duration="7807000" />
+      <workItem from="1708745162000" duration="884000" />
+      <workItem from="1708746059794" duration="1015000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -288,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708482996067</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Window get inside SlSingleBatchRenderer, and variables renamed across my renderer">
+      <option name="closed" value="true" />
+      <created>1708736960752</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1708736960752</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,7 +328,8 @@
     <MESSAGE value="caps" />
     <MESSAGE value="updates --&gt; Assignment 4" />
     <MESSAGE value="camera works" />
-    <option name="LAST_COMMIT_MESSAGE" value="camera works" />
+    <MESSAGE value="Window get inside SlSingleBatchRenderer, and variables renamed across my renderer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Window get inside SlSingleBatchRenderer, and variables renamed across my renderer" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

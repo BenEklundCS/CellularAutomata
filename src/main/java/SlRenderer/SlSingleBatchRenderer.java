@@ -28,17 +28,17 @@ public class SlSingleBatchRenderer {
     private int vpMatLocation = 0;
 
     public SlSingleBatchRenderer() {
-        WINDOW = SlWindow.get(WIN_WIDTH, WIN_HEIGHT, WIN_POS_X, WIN_POS_Y);
         slSingleBatchPrinter();
     }
 
     public void render() {
+        WINDOW = SlWindow.get(); // render should grab the current window
         try {
             renderLoop();
         } finally {
+            SlWindow.destroyGLFWindow();
             glfwTerminate();
             Objects.requireNonNull(glfwSetErrorCallback(null)).free();
-            SlWindow.destroyGLFWindow();
         }
     } // public void render()
 
