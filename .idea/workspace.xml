@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="camera works">
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="update before moving down to assignment3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlCamera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlCamera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
@@ -24,6 +25,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand />
@@ -186,6 +190,7 @@
       <workItem from="1708558667690" duration="373000" />
       <workItem from="1708560263347" duration="306000" />
       <workItem from="1708567051330" duration="1959000" />
+      <workItem from="1708732452618" duration="4481000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />

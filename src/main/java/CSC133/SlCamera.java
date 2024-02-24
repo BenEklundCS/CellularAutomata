@@ -32,6 +32,8 @@ public class SlCamera {
     }
 
     public void setProjectionOrtho() {
+        // Ensure to set the Matrix to identity before calling setOrtho on it
+        viewProjMatrix.identity();
         viewProjMatrix.setOrtho(f_left, f_right, f_bottom, f_top, f_near, f_far);
     }
 
@@ -45,12 +47,8 @@ public class SlCamera {
         setProjectionOrtho();
     }
 
-    public float getRight() {
-        return f_right;
-    }
-
-    public float getTop() {
-        return f_top;
+    public float[] getOrtho() { // custom method to get all the Ortho coordinates
+        return new float[] {f_left, f_right, f_bottom, f_top, f_near, f_far};
     }
 
     public Matrix4f getViewMatrix() {

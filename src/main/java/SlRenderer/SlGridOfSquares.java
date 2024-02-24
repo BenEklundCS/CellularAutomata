@@ -3,17 +3,19 @@ package SlRenderer;
 import static CSC133.Spot.*;
 
 public class SlGridOfSquares {
-    private final int MAX_ROWS;
-    private final int MAX_COLS;
-    private final float RIGHT;
-    private final float TOP;
-    private final int VERTICES_PER_SQUARE = 4;
+    private final int maxRows;
+    private final int maxCols;
+    private final float right;
+    private final float top;
+    private final int verticesPerSquare = 4;
 
-    SlGridOfSquares(int maxRows, int maxCols, float right, float top) {
-        this.MAX_ROWS = maxRows;
-        this.MAX_COLS = maxCols;
-        this.RIGHT = right;
-        this.TOP = top;
+    SlGridOfSquares(int maxRows, int maxCols, float[] ortho) {
+        final int right = 1;
+        final int top = 3;
+        this.maxRows = maxRows;
+        this.maxCols = maxCols;
+        this.right = ortho[right];
+        this.top = ortho[top];
     } // SlGridOfSquares(int maxRows, int maxCols) {
 
     public float[] getVertices() {
@@ -22,9 +24,8 @@ public class SlGridOfSquares {
         final int offset = 10;
         final int padding = 15;
 
-        float yScale = TOP / WIN_HEIGHT;
-
-        float xScale = RIGHT / WIN_WIDTH;
+        float yScale = top / WIN_HEIGHT;
+        float xScale = right / WIN_WIDTH;
 
         float xMin = offset;
         float xMax = xMin + length;
@@ -32,10 +33,10 @@ public class SlGridOfSquares {
         float yMin = yMax - length;
         int index = 0;
 
-        float[] vertices = new float[VERTICES_PER_SQUARE * floatsPerVertex * MAX_ROWS * MAX_COLS];
+        float[] vertices = new float[verticesPerSquare * floatsPerVertex * maxRows * maxCols];
 
-        for (int i = 0; i < MAX_ROWS; i++) {
-            for (int j = 0; j < MAX_COLS; j++) {
+        for (int i = 0; i < maxRows; i++) {
+            for (int j = 0; j < maxCols; j++) {
                 vertices[index++] = xMin * xScale;
                 vertices[index++] = yMin * yScale;
                 vertices[index++] = xMax * xScale;
@@ -58,7 +59,7 @@ public class SlGridOfSquares {
     public int[] getIndices() {
         final int indicesPerSquare = 6;
 
-        int[] indices = new int[MAX_ROWS * MAX_COLS * indicesPerSquare];
+        int[] indices = new int[maxRows * maxCols * indicesPerSquare];
         int vIndex = 0, i = 0;
 
         while (i < indices.length) {
@@ -68,7 +69,7 @@ public class SlGridOfSquares {
             indices[i++] = vIndex;
             indices[i++] = vIndex + 2;
             indices[i++] = vIndex + 3;
-            vIndex += VERTICES_PER_SQUARE;
+            vIndex += verticesPerSquare;
         }
         return indices;
     } // public int[] getIndices() {

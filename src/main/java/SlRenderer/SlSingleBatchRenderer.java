@@ -28,18 +28,18 @@ public class SlSingleBatchRenderer {
     private int vpMatLocation = 0;
 
     public SlSingleBatchRenderer() {
+        WINDOW = SlWindow.get(WIN_WIDTH, WIN_HEIGHT, WIN_POS_X, WIN_POS_Y);
         slSingleBatchPrinter();
     }
 
     public void render() {
-        WINDOW = SlWindow.get(WIN_WIDTH, WIN_HEIGHT, WIN_POS_X, WIN_POS_Y);
         try {
             renderLoop();
         } finally {
             glfwTerminate();
             Objects.requireNonNull(glfwSetErrorCallback(null)).free();
+            SlWindow.destroyGLFWindow();
         }
-        SlWindow.destroyGLFWindow();
     } // public void render()
 
     void renderLoop() {
@@ -111,7 +111,7 @@ public class SlSingleBatchRenderer {
             //
 
             SlCamera camera = new SlCamera(); // Initialize camera here to use right/top for SlGridOfSquares scaling
-            SlGridOfSquares grid = new SlGridOfSquares(rows, cols, camera.getRight(), camera.getTop());
+            SlGridOfSquares grid = new SlGridOfSquares(rows, cols, camera.getOrtho());
             float[] vertices = grid.getVertices();
             int[] indices = grid.getIndices();
 

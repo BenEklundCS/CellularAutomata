@@ -1,7 +1,7 @@
 package SlGoLBoard;
 
 public class Main {
-    private static SlGoLBoard my_board;
+    private static SlGoLBoard my_board; // Liskov Substitution Demo (Left this as SlGoBoard :) )
     private static final int ROWS = 7, COLS = 9;
     public static void main(String[] args) {
         test_1(); // print TwoDegreeNeighbors(0,0)
@@ -13,7 +13,7 @@ public class Main {
 
     // print TwoDegreeNeighbors(0,0)
     private static void test_1() {
-        my_board = new SlGoLBoardLive(ROWS, COLS);
+        my_board = new SlGoLBoardLive(ROWS, COLS); // First Liskov Substitution
         my_board.printGoLBoard();
         int my_row = 0, my_col = 0;
         System.out.println("TwoDegreeNeighbors(" + my_row + ", " + my_col + ") --> " +
