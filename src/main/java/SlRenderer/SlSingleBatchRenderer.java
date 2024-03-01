@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.Objects;
+import java.util.Random;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
@@ -53,10 +54,10 @@ public class SlSingleBatchRenderer {
     } // void renderLoop()
     void initOpenGL() {
 
-        final float BG_RED = 0.0f;
-        final float BG_GREEN = 0.0f;
-        final float BG_BLUE = 1.0f;
-        final float BG_ALPHA = 1.0f;
+        final float BG_RED = SlRenderUtils.randomRGB();
+        final float BG_GREEN = SlRenderUtils.randomRGB();
+        final float BG_BLUE = SlRenderUtils.randomRGB();
+        final float BG_ALPHA = SlRenderUtils.randomRGB();
 
         GL.createCapabilities();
         glEnable(GL_DEPTH_TEST);
@@ -84,7 +85,7 @@ public class SlSingleBatchRenderer {
                 "uniform vec3 color;" +
                         "void main(void) {" +
                         // This guy sets the shape color :)
-                        " gl_FragColor = vec4(1.0f, 0.1f, 0.6f, 1.0f);" + // gl_FragColor = vec4(0.7f, 0.5f, 0.1f, 1.0f);"
+                        " gl_FragColor = vec4(0.7f, 0.5f, 0.1f, 1.0f);" + // gl_FragColor = vec4(0.7f, 0.5f, 0.1f, 1.0f);"
                         "}");
 
         glCompileShader(fs);
