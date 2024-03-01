@@ -54,10 +54,10 @@ public class SlSingleBatchRenderer {
     } // void renderLoop()
     void initOpenGL() {
 
-        final float BG_RED = SlRenderUtils.randomRGB();
-        final float BG_GREEN = SlRenderUtils.randomRGB();
-        final float BG_BLUE = SlRenderUtils.randomRGB();
-        final float BG_ALPHA = SlRenderUtils.randomRGB();
+        final float BG_RED = 0.0f;
+        final float BG_GREEN = 0.0f;
+        final float BG_BLUE = 1.0f;
+        final float BG_ALPHA = 1.0f;
 
         GL.createCapabilities();
         glEnable(GL_DEPTH_TEST);
