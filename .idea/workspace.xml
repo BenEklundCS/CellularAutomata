@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlRenderUtils.java" afterDir="false" />
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="random rgb removed, assignment 4 is back to normal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlRenderUtils.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,8 +68,8 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Mess-Around&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ben/Programming/CSC 133/Assignment/src/main/java/CSC133&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Assignment4&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ben/Programming/CSC 138&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -117,8 +119,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.SlGoLBoard.Main" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.SlGoLBoard.Main" />
         <item itemvalue="Application.SlGoLBoard.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.SlGoLBoard.Main" />
@@ -192,6 +194,9 @@
       <workItem from="1708746059794" duration="1015000" />
       <workItem from="1708789268270" duration="15000" />
       <workItem from="1708789610025" duration="562000" />
+      <workItem from="1709343068942" duration="2363000" />
+      <workItem from="1709596995164" duration="13000" />
+      <workItem from="1709597322524" duration="31000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -297,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708736960752</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="random rgb removed, assignment 4 is back to normal">
+      <option name="closed" value="true" />
+      <created>1709336882431</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1709336882431</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,7 +342,8 @@
     <MESSAGE value="updates --&gt; Assignment 4" />
     <MESSAGE value="camera works" />
     <MESSAGE value="Window get inside SlSingleBatchRenderer, and variables renamed across my renderer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Window get inside SlSingleBatchRenderer, and variables renamed across my renderer" />
+    <MESSAGE value="random rgb removed, assignment 4 is back to normal" />
+    <option name="LAST_COMMIT_MESSAGE" value="random rgb removed, assignment 4 is back to normal" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

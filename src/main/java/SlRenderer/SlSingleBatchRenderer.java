@@ -10,7 +10,6 @@ import org.lwjgl.opengl.GL;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.Objects;
-import java.util.Random;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
@@ -43,7 +42,7 @@ public class SlSingleBatchRenderer {
         }
     } // public void render()
 
-    void renderLoop() {
+    private void renderLoop() {
         glfwPollEvents();
         initOpenGL();
         renderObjects();
@@ -52,7 +51,7 @@ public class SlSingleBatchRenderer {
             glfwWaitEvents();
         }
     } // void renderLoop()
-    void initOpenGL() {
+    private void initOpenGL() {
 
         final float BG_RED = 0.0f;
         final float BG_GREEN = 0.0f;
@@ -93,9 +92,8 @@ public class SlSingleBatchRenderer {
         glLinkProgram(shader_program);
         glUseProgram(shader_program);
         vpMatLocation = glGetUniformLocation(shader_program, "viewProjMatrix");
-        return;
     } // void initOpenGL()
-    void renderObjects() {
+    private void renderObjects() {
 
         while (!glfwWindowShouldClose(WINDOW)) {
 
@@ -112,7 +110,11 @@ public class SlSingleBatchRenderer {
             //
 
             SlCamera camera = new SlCamera(); // Initialize camera here to use right/top for SlGridOfSquares scaling
-            SlGridOfSquares grid = new SlGridOfSquares(rows, cols, camera.getOrtho());
+            final float[] ortho = camera.getOrtho();
+
+            final float right = ortho[1], top = ortho[3];
+
+            SlGridOfSquares grid = new SlGridOfSquares(rows, cols, right, top);
             float[] vertices = grid.getVertices();
             int[] indices = grid.getIndices();
 

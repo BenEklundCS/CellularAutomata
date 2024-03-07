@@ -5,13 +5,15 @@ import static CSC133.Spot.*;
 public class SlGridOfSquares {
     private final int maxRows;
     private final int maxCols;
-    private final float[] ortho;
+    private final float right;
+    private final float top;
     private final int verticesPerSquare = 4;
 
-    SlGridOfSquares(int maxRows, int maxCols, float[] ortho) {
+    SlGridOfSquares(int maxRows, int maxCols, float right, float top) {
         this.maxRows = maxRows;
         this.maxCols = maxCols;
-        this.ortho = ortho;
+        this.right = right;
+        this.top = top;
     } // SlGridOfSquares(int maxRows, int maxCols) {
 
     public float[] getVertices() {
@@ -19,11 +21,6 @@ public class SlGridOfSquares {
         final int length = 30;
         final int offset = 10;
         final int padding = 15;
-
-        final int rightPos = 1, topPos = 3;
-
-        final float right = ortho[rightPos];
-        final float top = ortho[topPos];
 
         final float xScale = right / WIN_WIDTH;
         final float yScale = top / WIN_HEIGHT;
