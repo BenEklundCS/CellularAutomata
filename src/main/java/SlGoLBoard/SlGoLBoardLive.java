@@ -4,6 +4,7 @@ public class SlGoLBoardLive extends SlGoLBoard {
 
     public SlGoLBoardLive(int numRows, int numCols) {
         super(numRows, numCols);
+        SlGoLBoardLivePrinter();
     }
     @Override
     public int countLiveTwoDegreeNeighbors(int row, int col) {
@@ -44,8 +45,8 @@ public class SlGoLBoardLive extends SlGoLBoard {
 
         int retVal = 0;
 
-        int nln = 0;  // Number Live Neighbors
-        boolean ccs = true; // Current Cell Status
+        int nln;  // Number Live Neighbors
+        boolean ccs; // Current Cell Status
         for (int row = 0; row < NUM_ROWS; ++row){
             for (int col = 0; col < NUM_COLS; ++col) {
                 ccs = liveCellArray[row][col];
@@ -55,14 +56,18 @@ public class SlGoLBoardLive extends SlGoLBoard {
                     ++retVal;
                 }
                 else {
-                    // Current Cell Status is true
-                    if (nln < 2 || nln > 3) {
+                    // 1. Live Neighbors < 2 --> Kill
+                    if (nln < 2) {
                         nextCellArray[row][col] = false;
                     }
-                    else {
-                        // nln == 2 || nln == 3
+                    // 2. Live Neighbors == 2 || Live Neighbors == 3 --> Retain
+                    // 4. Dead with Live Neighbors == 3 --> Alive again
+                    else if (nln == 2 || nln == 3) {
                         nextCellArray[row][col] = true;
-                        ++retVal;
+                    }
+                    // 3. Live Neighbors > 3 --> Kill
+                    else { // nln > 3
+                        nextCellArray[row][col] = false;
                     }
                 }
             }  // for (int row = 0; ...)
@@ -76,5 +81,9 @@ public class SlGoLBoardLive extends SlGoLBoard {
     }  // public int updateNextCellArray()
     public boolean isAlive(int row, int col) {
         return liveCellArray[row][col];
+    }
+
+    private void SlGoLBoardLivePrinter() {
+        System.out.println("Call to SlGoLBoardLive received.");
     }
 } // public class SlGoLBoardLive extends SlGoLBoard {

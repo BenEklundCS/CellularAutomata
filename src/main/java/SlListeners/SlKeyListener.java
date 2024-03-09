@@ -4,9 +4,8 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public class SlKeyListener {
     private static SlKeyListener my_instance;
-
     private static final int MAX_KEYS = 400;
-    private boolean keyPressed[] = new boolean[MAX_KEYS]; // some "reasonable" number!
+    private final boolean[] keyPressed = new boolean[MAX_KEYS]; // some "reasonable" number!
 
     private SlKeyListener() {
 

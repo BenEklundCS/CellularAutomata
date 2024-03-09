@@ -96,7 +96,34 @@ public class SlSingleBatchRenderer {
         vpMatLocation = glGetUniformLocation(shader_program, "viewProjMatrix");
         renderColorLocation = glGetUniformLocation(shader_program, "color");
     } // void initOpenGL()
+
     private void renderObjects() {
+
+        // Generate GoL board and rows and cols of the grid
+
+        int rows = 50;
+        int cols = 50;
+        SlGoLBoardLive GoLBoard = new SlGoLBoardLive(rows, cols);
+
+        //
+        // Camera handling
+        //  - Make a camera and then get the right and top properties to scale the Grid Of Squares
+
+        SlCamera camera = new SlCamera(); // Initialize camera here to use right/top for SlGridOfSquares scaling
+        final float[] ortho = camera.getOrtho();
+        final float right = ortho[1], top = ortho[3];
+
+        //
+        // Vertices / Indices generation
+        //  - The squares do not move, so we can generate their indices and vertices once.
+
+        SlGridOfSquares grid = new SlGridOfSquares(rows, cols, right, top);
+        float[] vertices = grid.getVertices();
+        int[] indices = grid.getIndices();
+
+        //
+        //  Begin rendering while loop
+        //
 
         while (!glfwWindowShouldClose(WINDOW)) {
 
@@ -104,26 +131,6 @@ public class SlSingleBatchRenderer {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             int vbo = glGenBuffers();
             int ibo = glGenBuffers();
-
-            int rows = 18;
-            int cols = 20;
-
-            //
-            // Camera handling
-            //
-
-            SlCamera camera = new SlCamera(); // Initialize camera here to use right/top for SlGridOfSquares scaling
-            final float[] ortho = camera.getOrtho();
-
-            final float right = ortho[1], top = ortho[3];
-
-            //
-            // Vertices / Indices generation and glBuffer
-            //
-
-            SlGridOfSquares grid = new SlGridOfSquares(rows, cols, right, top);
-            float[] vertices = grid.getVertices();
-            int[] indices = grid.getIndices();
 
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBufferData(GL_ARRAY_BUFFER, (FloatBuffer) BufferUtils.
@@ -152,10 +159,8 @@ public class SlSingleBatchRenderer {
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
             //
-            // SlGoLBoard
+            // Color squares using GoL rules
             //
-
-            SlGoLBoardLive GoLBoard = new SlGoLBoardLive(rows, cols);
 
             int ibps = 24;
             int dvps = 6;
@@ -169,15 +174,13 @@ public class SlSingleBatchRenderer {
                 } else {
                     glUniform3f(renderColorLocation, deadColor.x, deadColor.y, deadColor.z);
                 }
-
                 glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, ibps*ci);
                 GoLBoard.updateNextCellArray();
             }  //  for (int ci = 0; ci < NUM_POLY_ROWS * NUM_POLY_COLS; ++ci)
-
             glfwSwapBuffers(WINDOW);
-
         }
     } // renderObjects
+
     private void slSingleBatchPrinter() {
         System.out.println("Call to slSingleBatchRenderer:: () == received!");
     }

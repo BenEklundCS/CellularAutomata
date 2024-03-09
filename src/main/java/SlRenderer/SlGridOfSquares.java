@@ -16,6 +16,9 @@ public class SlGridOfSquares {
         this.top = top;
     } // SlGridOfSquares(int maxRows, int maxCols) {
 
+    // Need to center grid of squares for A5
+
+
     public float[] getVertices() {
         final int floatsPerVertex = 2;
         final int length = 30;
