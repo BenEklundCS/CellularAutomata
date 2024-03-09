@@ -2,6 +2,7 @@ package SlRenderer;
 
 import CSC133.SlCamera;
 import CSC133.SlWindow;
+import SlGoLBoard.SlGoLBoardLive;
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
 
@@ -26,6 +27,7 @@ public class SlSingleBatchRenderer {
     private static final int OGL_MATRIX_SIZE = 16;
     private final FloatBuffer myFloatBuffer = BufferUtils.createFloatBuffer(OGL_MATRIX_SIZE);
     private int vpMatLocation = 0;
+    private int renderColorLocation = 0;
 
     public SlSingleBatchRenderer() {
         slSingleBatchPrinter();
@@ -55,7 +57,7 @@ public class SlSingleBatchRenderer {
 
         final float BG_RED = 0.0f;
         final float BG_GREEN = 0.0f;
-        final float BG_BLUE = 1.0f;
+        final float BG_BLUE = 0.3f;
         final float BG_ALPHA = 1.0f;
 
         GL.createCapabilities();
@@ -84,7 +86,7 @@ public class SlSingleBatchRenderer {
                 "uniform vec3 color;" +
                         "void main(void) {" +
                         // This guy sets the shape color :)
-                        " gl_FragColor = vec4(0.7f, 0.5f, 0.1f, 1.0f);" + // gl_FragColor = vec4(0.7f, 0.5f, 0.1f, 1.0f);"
+                        " gl_FragColor = vec4(color, 1.0f);" + //" gl_FragColor = vec4(0.7f, 0.5f, 0.1f, 1.0f);"
                         "}");
 
         glCompileShader(fs);
@@ -92,6 +94,7 @@ public class SlSingleBatchRenderer {
         glLinkProgram(shader_program);
         glUseProgram(shader_program);
         vpMatLocation = glGetUniformLocation(shader_program, "viewProjMatrix");
+        renderColorLocation = glGetUniformLocation(shader_program, "color");
     } // void initOpenGL()
     private void renderObjects() {
 
@@ -102,17 +105,21 @@ public class SlSingleBatchRenderer {
             int vbo = glGenBuffers();
             int ibo = glGenBuffers();
 
-            int rows = 20;
-            int cols = 18;
+            int rows = 18;
+            int cols = 20;
 
             //
-            // Vertices / Indices generation and glBuffer
+            // Camera handling
             //
 
             SlCamera camera = new SlCamera(); // Initialize camera here to use right/top for SlGridOfSquares scaling
             final float[] ortho = camera.getOrtho();
 
             final float right = ortho[1], top = ortho[3];
+
+            //
+            // Vertices / Indices generation and glBuffer
+            //
 
             SlGridOfSquares grid = new SlGridOfSquares(rows, cols, right, top);
             float[] vertices = grid.getVertices();
@@ -142,18 +149,33 @@ public class SlSingleBatchRenderer {
             glUniformMatrix4fv(vpMatLocation, false,
                     viewProjMatrix.get(myFloatBuffer));
 
-            final float V0 = 1.0f;
-            final float V1 = 0.498f;
-            final float V2 = 0.153f;
-
-            int renderColorLocation = 0;
-            glUniform3f(renderColorLocation, V0, V1, V2);
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-            int VTD = 6; // need to process 6 Vertices To Draw 2 triangles
-            final int COUNT = indices.length;
-            glDrawElements(GL_TRIANGLES, COUNT, GL_UNSIGNED_INT, 0L);
+            //
+            // SlGoLBoard
+            //
+
+            SlGoLBoardLive GoLBoard = new SlGoLBoardLive(rows, cols);
+
+            int ibps = 24;
+            int dvps = 6;
+
+            for (int ci = 0; ci < rows * cols; ++ci) {
+                int currRow = ci / cols;
+                int currCol = ci % cols;
+
+                if (GoLBoard.isAlive(currRow, currCol)) {
+                    glUniform3f(renderColorLocation, liveColor.x, liveColor.y, liveColor.z);
+                } else {
+                    glUniform3f(renderColorLocation, deadColor.x, deadColor.y, deadColor.z);
+                }
+
+                glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, ibps*ci);
+                GoLBoard.updateNextCellArray();
+            }  //  for (int ci = 0; ci < NUM_POLY_ROWS * NUM_POLY_COLS; ++ci)
+
             glfwSwapBuffers(WINDOW);
+
         }
     } // renderObjects
     private void slSingleBatchPrinter() {

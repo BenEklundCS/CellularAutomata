@@ -74,4 +74,7 @@ public class SlGoLBoardLive extends SlGoLBoard {
 
         return retVal;
     }  // public int updateNextCellArray()
+    public boolean isAlive(int row, int col) {
+        return liveCellArray[row][col];
+    }
 } // public class SlGoLBoardLive extends SlGoLBoard {
