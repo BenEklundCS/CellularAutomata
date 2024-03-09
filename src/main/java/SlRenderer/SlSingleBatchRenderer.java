@@ -3,6 +3,8 @@ package SlRenderer;
 import CSC133.SlCamera;
 import CSC133.SlWindow;
 import SlGoLBoard.SlGoLBoardLive;
+import SlListeners.SlKeyListener;
+import SlListeners.SlMouseListener;
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
 
@@ -99,11 +101,14 @@ public class SlSingleBatchRenderer {
 
     private void renderObjects() {
 
-        // Generate GoL board and rows and cols of the grid
+        System.out.println(HEIGHT);
+        System.out.println(WIDTH);
 
-        int rows = 50;
-        int cols = 50;
-        SlGoLBoardLive GoLBoard = new SlGoLBoardLive(rows, cols);
+        //
+        // Generate GoL board and rows and cols of the grid
+        //
+
+        SlGoLBoardLive GoLBoard = new SlGoLBoardLive(MAX_ROWS, MAX_COLS);
 
         //
         // Camera handling
@@ -117,7 +122,7 @@ public class SlSingleBatchRenderer {
         // Vertices / Indices generation
         //  - The squares do not move, so we can generate their indices and vertices once.
 
-        SlGridOfSquares grid = new SlGridOfSquares(rows, cols, right, top);
+        SlGridOfSquares grid = new SlGridOfSquares();
         float[] vertices = grid.getVertices();
         int[] indices = grid.getIndices();
 
@@ -127,7 +132,16 @@ public class SlSingleBatchRenderer {
 
         while (!glfwWindowShouldClose(WINDOW)) {
 
-            glfwPollEvents();
+            glfwPollEvents(); // sends events from the GLFW window
+
+            //
+            // Handle keyboard and mouse events
+            //
+
+            //new SlMetaMenu(GoLBoard).handleEvents();
+
+            //SlKeyListener.keyCallback(WINDOW, 32, 32, 32, 0);
+
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             int vbo = glGenBuffers();
             int ibo = glGenBuffers();
@@ -165,18 +179,18 @@ public class SlSingleBatchRenderer {
             int ibps = 24;
             int dvps = 6;
 
-            for (int ci = 0; ci < rows * cols; ++ci) {
-                int currRow = ci / cols;
-                int currCol = ci % cols;
+            for (int i = 0; i < MAX_ROWS * MAX_COLS; ++i) {
+                int currRow = i / MAX_COLS;
+                int currCol = i % MAX_COLS;
 
                 if (GoLBoard.isAlive(currRow, currCol)) {
-                    glUniform3f(renderColorLocation, liveColor.x, liveColor.y, liveColor.z);
+                    glUniform3f(renderColorLocation, LIVE_COLOR.x, LIVE_COLOR.y, LIVE_COLOR.z);
                 } else {
-                    glUniform3f(renderColorLocation, deadColor.x, deadColor.y, deadColor.z);
+                    glUniform3f(renderColorLocation, DEAD_COLOR.x, DEAD_COLOR.y, DEAD_COLOR.z);
                 }
-                glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, ibps*ci);
+                glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, ibps * i);
                 GoLBoard.updateNextCellArray();
-            }  //  for (int ci = 0; ci < NUM_POLY_ROWS * NUM_POLY_COLS; ++ci)
+            }  //  for (int i = 0; i < NUM_POLY_ROWS * NUM_POLY_COLS; ++i)
             glfwSwapBuffers(WINDOW);
         }
     } // renderObjects

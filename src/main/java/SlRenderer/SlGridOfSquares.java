@@ -3,41 +3,29 @@ package SlRenderer;
 import static CSC133.Spot.*;
 
 public class SlGridOfSquares {
-    private final int maxRows;
-    private final int maxCols;
-    private final float right;
-    private final float top;
     private final int verticesPerSquare = 4;
 
-    SlGridOfSquares(int maxRows, int maxCols, float right, float top) {
-        this.maxRows = maxRows;
-        this.maxCols = maxCols;
-        this.right = right;
-        this.top = top;
-    } // SlGridOfSquares(int maxRows, int maxCols) {
+    SlGridOfSquares() {
 
-    // Need to center grid of squares for A5
-
+    } // SlGridOfSquares() {
 
     public float[] getVertices() {
         final int floatsPerVertex = 2;
         final int length = 30;
-        final int offset = 10;
-        final int padding = 15;
 
-        final float xScale = right / WIN_WIDTH;
-        final float yScale = top / WIN_HEIGHT;
+        final float xScale = WIDTH / WIN_WIDTH;
+        final float yScale = HEIGHT / WIN_HEIGHT;
 
-        float xMin = offset;
+        float xMin = OFFSET;
         float xMax = xMin + length;
-        float yMax = WIN_HEIGHT - offset;
+        float yMax = WIN_HEIGHT - OFFSET;
         float yMin = yMax - length;
         int index = 0;
 
-        float[] vertices = new float[verticesPerSquare * floatsPerVertex * maxRows * maxCols];
+        float[] vertices = new float[verticesPerSquare * floatsPerVertex * MAX_ROWS * MAX_COLS];
 
-        for (int i = 0; i < maxRows; i++) {
-            for (int j = 0; j < maxCols; j++) {
+        for (int i = 0; i < MAX_ROWS; i++) {
+            for (int j = 0; j < MAX_COLS; j++) {
                 vertices[index++] = xMin * xScale;
                 vertices[index++] = yMin * yScale;
                 vertices[index++] = xMax * xScale;
@@ -46,12 +34,12 @@ public class SlGridOfSquares {
                 vertices[index++] = yMax * yScale;
                 vertices[index++] = xMin * xScale;
                 vertices[index++] = yMax * yScale;
-                xMin = xMax + padding;
+                xMin = xMax + PADDING;
                 xMax = xMin + length;
             }
-            xMin = offset;
+            xMin = OFFSET;
             xMax = xMin + length;
-            yMax = yMin - padding;
+            yMax = yMin - PADDING;
             yMin = yMax - length;
         }
         return vertices;
@@ -60,7 +48,7 @@ public class SlGridOfSquares {
     public int[] getIndices() {
         final int indicesPerSquare = 6;
 
-        int[] indices = new int[maxRows * maxCols * indicesPerSquare];
+        int[] indices = new int[MAX_ROWS * MAX_COLS * indicesPerSquare];
         int vIndex = 0, i = 0;
 
         while (i < indices.length) {
