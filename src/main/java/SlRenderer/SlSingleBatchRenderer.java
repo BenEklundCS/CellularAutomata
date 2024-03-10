@@ -1,12 +1,14 @@
 package SlRenderer;
 
 import CSC133.SlCamera;
+import CSC133.SlMetaUI;
 import CSC133.SlWindow;
 import SlGoLBoard.SlGoLBoardLive;
-import SlListeners.SlKeyListener;
-import SlListeners.SlMouseListener;
+import SlListeners.SlEventHandler;
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
+
+import java.io.File;
 
 import org.lwjgl.opengl.GL;
 
@@ -30,6 +32,8 @@ public class SlSingleBatchRenderer {
     private final FloatBuffer myFloatBuffer = BufferUtils.createFloatBuffer(OGL_MATRIX_SIZE);
     private int vpMatLocation = 0;
     private int renderColorLocation = 0;
+    private SlGoLBoardLive GoLBoard;
+    private final SlCamera camera = new SlCamera();
 
     public SlSingleBatchRenderer() {
         slSingleBatchPrinter();
@@ -101,30 +105,26 @@ public class SlSingleBatchRenderer {
 
     private void renderObjects() {
 
-        System.out.println(HEIGHT);
-        System.out.println(WIDTH);
-
         //
-        // Generate GoL board and rows and cols of the grid
+        // Generate GoL board from rows and cols of the grid
         //
 
-        SlGoLBoardLive GoLBoard = new SlGoLBoardLive(MAX_ROWS, MAX_COLS);
+        GoLBoard = new SlGoLBoardLive(MAX_ROWS, MAX_COLS);
 
         //
-        // Camera handling
-        //  - Make a camera and then get the right and top properties to scale the Grid Of Squares
-
-        SlCamera camera = new SlCamera(); // Initialize camera here to use right/top for SlGridOfSquares scaling
-        final float[] ortho = camera.getOrtho();
-        final float right = ortho[1], top = ortho[3];
-
+        // Vertices / Indices generator
         //
-        // Vertices / Indices generation
-        //  - The squares do not move, so we can generate their indices and vertices once.
 
         SlGridOfSquares grid = new SlGridOfSquares();
-        float[] vertices = grid.getVertices();
-        int[] indices = grid.getIndices();
+
+        //
+        // Set up event handler and register callbacks
+        //
+
+        SlEventHandler eventHandler = new SlEventHandler();
+
+        long start_render_time = 0;
+        long end_render_time = 0;
 
         //
         //  Begin rendering while loop
@@ -132,69 +132,138 @@ public class SlSingleBatchRenderer {
 
         while (!glfwWindowShouldClose(WINDOW)) {
 
+            start_render_time = System.currentTimeMillis();
+
             glfwPollEvents(); // sends events from the GLFW window
 
-            //
-            // Handle keyboard and mouse events
-            //
+            eventHandler.processEvents();
 
-            //new SlMetaMenu(GoLBoard).handleEvents();
+            float[] vertices = grid.getVertices();
+            int[] indices = grid.getIndices();
 
-            //SlKeyListener.keyCallback(WINDOW, 32, 32, 32, 0);
-
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            int vbo = glGenBuffers();
-            int ibo = glGenBuffers();
-
-            glBindBuffer(GL_ARRAY_BUFFER, vbo);
-            glBufferData(GL_ARRAY_BUFFER, (FloatBuffer) BufferUtils.
-                    createFloatBuffer(vertices.length).
-                    put(vertices).flip(), GL_STATIC_DRAW);
-            glEnableClientState(GL_VERTEX_ARRAY);
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, (IntBuffer) BufferUtils.
-                    createIntBuffer(indices.length).
-                    put(indices).flip(), GL_STATIC_DRAW);
-
-            final int SIZE = 2;
-
-            glVertexPointer(SIZE, GL_FLOAT, 0, 0L);
-
-            //
-            // Use the camera to setProjectionOrtho and generate a viewProjMatrix
-            //
-
-            camera.setProjectionOrtho();
-            Matrix4f viewProjMatrix = camera.getProjectionMatrix();
-
-            glUniformMatrix4fv(vpMatLocation, false,
-                    viewProjMatrix.get(myFloatBuffer));
-
-            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-            //
-            // Color squares using GoL rules
-            //
-
-            int ibps = 24;
-            int dvps = 6;
-
-            for (int i = 0; i < MAX_ROWS * MAX_COLS; ++i) {
-                int currRow = i / MAX_COLS;
-                int currCol = i % MAX_COLS;
-
-                if (GoLBoard.isAlive(currRow, currCol)) {
-                    glUniform3f(renderColorLocation, LIVE_COLOR.x, LIVE_COLOR.y, LIVE_COLOR.z);
-                } else {
-                    glUniform3f(renderColorLocation, DEAD_COLOR.x, DEAD_COLOR.y, DEAD_COLOR.z);
+            if (SAVE_TO_FILE) {
+                renderScene(vertices, indices);
+                String file_name = SlMetaUI.getFileName();
+                if (file_name != null) {
+                    GoLBoard.save(file_name);
                 }
-                glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, ibps * i);
-                GoLBoard.updateNextCellArray();
-            }  //  for (int i = 0; i < NUM_POLY_ROWS * NUM_POLY_COLS; ++i)
-            glfwSwapBuffers(WINDOW);
+                SAVE_TO_FILE = false;
+            }
+
+            if (LOAD_FROM_FILE) {
+                File file = SlMetaUI.getFile();
+                if (file != null) {
+                    GoLBoard.load(file);
+                    renderScene(vertices, indices);
+                }
+                LOAD_FROM_FILE = false;
+            }
+
+            if (RESET) {
+                GoLBoard = new SlGoLBoardLive(MAX_ROWS, MAX_COLS);
+                RESET = false;
+            }
+
+            if (RESTART) {
+                GoLBoard.reset();
+                RESTART = false;
+            }
+
+            if (DELAY) {
+                long delayEnd = System.currentTimeMillis() + 500;
+                while (System.currentTimeMillis() < delayEnd) {
+                    try {
+                        // Sleep for a short period to maintain responsiveness
+                        Thread.sleep(30);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt(); // Handle interrupted exception
+                    }
+                    glfwPollEvents(); // Poll for events during the delay
+                    // Assume this checks for the "D" key and toggles delayActive accordingly
+                    eventHandler.processEvents();
+                }
+            }
+
+            if (USAGE) {
+                SlMetaUI.printUsage();
+                USAGE = false;
+            }
+
+            // Render call is now encapsulated in renderScene
+            if (!HALT_RENDERING || RENDER_ONE_FRAME) {
+                renderScene(vertices, indices);
+                if (RENDER_ONE_FRAME) { // Render one frame toggle - allows RESET and REFRESH
+                    RENDER_ONE_FRAME = false; // Reset flag after rendering
+                    HALT_RENDERING = true; // Ensure the game pauses again
+                }
+                else { // Only update the cell array when the game is not halted
+                    GoLBoard.updateNextCellArray();
+                }
+            }
+            else {
+                // wait for events with a responsive timeout
+                glfwWaitEventsTimeout(0.1);
+            }
+
+            end_render_time = System.currentTimeMillis();
+
+            if (FPS) {
+                SlMetaUI.fps(start_render_time, end_render_time);
+            }
         }
     } // renderObjects
+    private void renderScene(float[] vertices, int[] indices) {
 
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        int vbo = glGenBuffers();
+        int ibo = glGenBuffers();
+
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, (FloatBuffer) BufferUtils.
+                createFloatBuffer(vertices.length).
+                put(vertices).flip(), GL_STATIC_DRAW);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, (IntBuffer) BufferUtils.
+                createIntBuffer(indices.length).
+                put(indices).flip(), GL_STATIC_DRAW);
+
+        final int SIZE = 2;
+
+        glVertexPointer(SIZE, GL_FLOAT, 0, 0L);
+
+        //
+        // Use the camera to setProjectionOrtho and generate a viewProjMatrix
+        //
+
+        camera.setProjectionOrtho();
+        Matrix4f viewProjMatrix = camera.getProjectionMatrix();
+
+        glUniformMatrix4fv(vpMatLocation, false,
+                viewProjMatrix.get(myFloatBuffer));
+
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+        //
+        // Color squares using GoL rules
+        //
+
+        int ibps = 24;
+        int dvps = 6;
+
+        for (int i = 0; i < MAX_ROWS * MAX_COLS; ++i) {
+            int currRow = i / MAX_COLS;
+            int currCol = i % MAX_COLS;
+
+            if (GoLBoard.isAlive(currRow, currCol)) {
+                glUniform3f(renderColorLocation, LIVE_COLOR.x, LIVE_COLOR.y, LIVE_COLOR.z);
+            } else {
+                glUniform3f(renderColorLocation, DEAD_COLOR.x, DEAD_COLOR.y, DEAD_COLOR.z);
+            }
+            glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, ibps * i);
+        }  //  for (int i = 0; i < NUM_POLY_ROWS * NUM_POLY_COLS; ++i)
+        glfwSwapBuffers(WINDOW);
+    }
     private void slSingleBatchPrinter() {
         System.out.println("Call to slSingleBatchRenderer:: () == received!");
     }

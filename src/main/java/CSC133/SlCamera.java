@@ -9,9 +9,9 @@ public class SlCamera {
     private final Matrix4f viewProjMatrix = new Matrix4f().identity();
     private final Matrix4f viewMatrix = new Matrix4f().identity();
     private float f_left = 0;
-    private float f_right = WIDTH;
+    private float f_right = WIN_WIDTH;
     private float f_bottom = 0;
-    private float f_top = HEIGHT;
+    private float f_top = WIN_HEIGHT;
     private float f_near = 0;
     private float f_far = 10;
     public final Vector3f defaultLookFrom = new Vector3f(0f, 0f, 10f);

@@ -1,10 +1,18 @@
 package SlGoLBoard;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class SlGoLBoardLive extends SlGoLBoard {
+
+    private final boolean[][] initialCellArray;
 
     public SlGoLBoardLive(int numRows, int numCols) {
         super(numRows, numCols);
         SlGoLBoardLivePrinter();
+        initialCellArray = new boolean[numRows][numCols];
+        copyCellArray(liveCellArray, initialCellArray);
     }
     @Override
     public int countLiveTwoDegreeNeighbors(int row, int col) {
@@ -81,6 +89,65 @@ public class SlGoLBoardLive extends SlGoLBoard {
     }  // public int updateNextCellArray()
     public boolean isAlive(int row, int col) {
         return liveCellArray[row][col];
+    }
+
+    public void reset() {
+        for (int row = 0; row < liveCellArray.length; ++row){
+            System.arraycopy(initialCellArray[row], 0, liveCellArray[row], 0, liveCellArray[row].length);
+        }
+    }
+    public void save(String file_name) {
+        if (!file_name.endsWith(".ca")) {
+            file_name += ".ca";
+        }
+        File f = new File(file_name);
+        try {
+            if (f.createNewFile()) {
+                System.out.println("File created.");
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_name))) {
+                    for (boolean[] row : liveCellArray) {
+                        for (boolean value : row) {
+                            // Write '1' for true and '0' for false
+                            writer.write(value ? '1' : '0');
+                        }
+                        writer.newLine(); // Move to the next line after writing each row
+                    }
+                    System.out.println("Successfully wrote cellular automata to file.");
+                } catch (Exception e) {
+                    System.err.println("An error occurred while writing the cellular automata to file.");
+                    e.printStackTrace();
+                }
+            }
+            else {
+                System.out.println("File already exists.");
+            }
+        } catch (Exception e) {e.printStackTrace();}
+    }
+
+    public void load(File file) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            int row = 0;
+            while ((line = br.readLine()) != null && row < NUM_ROWS) {
+                for (int col = 0; col < line.length() && col < NUM_COLS; col++) {
+                    liveCellArray[row][col] = (line.charAt(col) == '1');
+                }
+                row++;
+            }
+            System.out.println("Loaded cellular automata from file.");
+        } catch (Exception e) {
+            System.err.println("An error occurred while reading the cellular automata file.");
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    private void copyCellArray(boolean[][] src, boolean[][] dest) {
+        for (int i = 0; i < src.length; i++) {
+            System.arraycopy(src[i], 0, dest[i], 0, src[i].length);
+        }
     }
 
     private void SlGoLBoardLivePrinter() {

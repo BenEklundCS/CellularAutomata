@@ -9,11 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="assignment5 refactor and ACTUALLY working now. Keyboard events next">
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="more stuff to spot, need to fix ortho HEIGHT and WIDTH">
+      <change afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlMetaUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SlListeners/SlEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlCamera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlCamera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
     </list>
@@ -71,25 +74,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Assignment5",
-    "last_opened_file_path": "/home/ben/Programming/CSC 133/Assignment/src/main/java/SlListeners",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Assignment5&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ben/Programming/CSC 133/Assignment/src/main/java/SlListeners&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/SlListeners" />
@@ -99,7 +102,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/CSC133" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="CSC133.Main" />
       <module name="Assignment.main" />
@@ -209,6 +212,11 @@
       <workItem from="1709771342563" duration="286000" />
       <workItem from="1709786558467" duration="2876000" />
       <workItem from="1709941195809" duration="1007000" />
+      <workItem from="1709956324336" duration="434000" />
+      <workItem from="1710006927554" duration="1321000" />
+      <workItem from="1710013495925" duration="13177000" />
+      <workItem from="1710041584955" duration="3306000" />
+      <workItem from="1710083689198" duration="7296000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -338,7 +346,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709946703283</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="more stuff to spot, need to fix ortho HEIGHT and WIDTH">
+      <option name="closed" value="true" />
+      <created>1709951527430</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1709951527430</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -373,7 +389,8 @@
     <MESSAGE value="random rgb removed, assignment 4 is back to normal" />
     <MESSAGE value="assignment 4 complete" />
     <MESSAGE value="assignment5 refactor and ACTUALLY working now. Keyboard events next" />
-    <option name="LAST_COMMIT_MESSAGE" value="assignment5 refactor and ACTUALLY working now. Keyboard events next" />
+    <MESSAGE value="more stuff to spot, need to fix ortho HEIGHT and WIDTH" />
+    <option name="LAST_COMMIT_MESSAGE" value="more stuff to spot, need to fix ortho HEIGHT and WIDTH" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

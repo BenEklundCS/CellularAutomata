@@ -11,36 +11,32 @@ public class SlGridOfSquares {
 
     public float[] getVertices() {
         final int floatsPerVertex = 2;
-        final int length = 30;
-
-        final float xScale = WIDTH / WIN_WIDTH;
-        final float yScale = HEIGHT / WIN_HEIGHT;
 
         float xMin = OFFSET;
-        float xMax = xMin + length;
+        float xMax = xMin + LENGTH;
         float yMax = WIN_HEIGHT - OFFSET;
-        float yMin = yMax - length;
+        float yMin = yMax - LENGTH;
         int index = 0;
 
         float[] vertices = new float[verticesPerSquare * floatsPerVertex * MAX_ROWS * MAX_COLS];
 
         for (int i = 0; i < MAX_ROWS; i++) {
             for (int j = 0; j < MAX_COLS; j++) {
-                vertices[index++] = xMin * xScale;
-                vertices[index++] = yMin * yScale;
-                vertices[index++] = xMax * xScale;
-                vertices[index++] = yMin * yScale;
-                vertices[index++] = xMax * xScale;
-                vertices[index++] = yMax * yScale;
-                vertices[index++] = xMin * xScale;
-                vertices[index++] = yMax * yScale;
+                vertices[index++] = xMin;
+                vertices[index++] = yMin;
+                vertices[index++] = xMax;
+                vertices[index++] = yMin;
+                vertices[index++] = xMax;
+                vertices[index++] = yMax;
+                vertices[index++] = xMin;
+                vertices[index++] = yMax;
                 xMin = xMax + PADDING;
-                xMax = xMin + length;
+                xMax = xMin + LENGTH;
             }
             xMin = OFFSET;
-            xMax = xMin + length;
+            xMax = xMin + LENGTH;
             yMax = yMin - PADDING;
-            yMin = yMax - length;
+            yMin = yMax - LENGTH;
         }
         return vertices;
     } // public float[] getVertices() {
