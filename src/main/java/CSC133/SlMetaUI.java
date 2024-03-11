@@ -1,10 +1,8 @@
 package CSC133;
 
 import javax.swing.*;
-import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.io.File;
-import java.util.Map;
 
 public class SlMetaUI {
 

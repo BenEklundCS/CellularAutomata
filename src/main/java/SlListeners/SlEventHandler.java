@@ -16,10 +16,11 @@ public class SlEventHandler {
             SlKeyListener.resetKeypressEvent(GLFW_KEY_D);
         }
         if (SlKeyListener.isKeyPressed(GLFW_KEY_H)) {
-            HALT_RENDERING = !HALT_RENDERING;
             System.out.println(
                     (!HALT_RENDERING) ? "Render started." : "Render halted."
             );
+            HALT_RENDERING = !HALT_RENDERING;
+            // Make sure to render the last frame to catch up - we do this here because the HALT_RENDERING flag isn't a toggle
             if (HALT_RENDERING) {
                 RENDER_ONE_FRAME = true;
             }
@@ -35,17 +36,11 @@ public class SlEventHandler {
         if (SlKeyListener.isKeyPressed(GLFW_KEY_R)) {
             System.out.println("Reset.");
             RESET = true;
-            if (HALT_RENDERING) {
-                RENDER_ONE_FRAME = true;
-            }
             SlKeyListener.resetKeypressEvent(GLFW_KEY_R);
         }
         if (SlKeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
             System.out.println("Restarted.");
             RESTART = true;
-            if (HALT_RENDERING) {
-                RENDER_ONE_FRAME = true;
-            }
             SlKeyListener.resetKeypressEvent(GLFW_KEY_SPACE);
         }
         if (SlKeyListener.isKeyPressed(GLFW_KEY_ESCAPE)) {
@@ -60,13 +55,11 @@ public class SlEventHandler {
         }
         if (SlKeyListener.isKeyPressed(GLFW_KEY_S)) {
             SAVE_TO_FILE = true;
-            HALT_RENDERING = true;
-            System.out.println("Render halted.");
+            SlKeyListener.resetKeypressEvent(GLFW_KEY_S);
         }
         if (SlKeyListener.isKeyPressed(GLFW_KEY_L)) {
             LOAD_FROM_FILE = true;
-            HALT_RENDERING = true;
-            System.out.println("Render halted.");
+            SlKeyListener.resetKeypressEvent(GLFW_KEY_L);
         }
     }
 

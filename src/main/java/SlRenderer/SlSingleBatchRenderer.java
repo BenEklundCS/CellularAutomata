@@ -13,7 +13,6 @@ import java.io.File;
 import org.lwjgl.opengl.GL;
 
 import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
 import java.util.Objects;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -123,8 +122,8 @@ public class SlSingleBatchRenderer {
 
         SlEventHandler eventHandler = new SlEventHandler();
 
-        long start_render_time = 0;
-        long end_render_time = 0;
+        long start_render_time;
+        long end_render_time;
 
         //
         //  Begin rendering while loop
@@ -141,8 +140,16 @@ public class SlSingleBatchRenderer {
             float[] vertices = grid.getVertices();
             int[] indices = grid.getIndices();
 
+            // When processing a file save action, we do the following here:
+                // - render the scene to reflect the CURRENT game state
+                // - get a file name from the user
+
             if (SAVE_TO_FILE) {
-                renderScene(vertices, indices);
+                if (!HALT_RENDERING) {
+                    HALT_RENDERING = true;
+                    System.out.println("Render halted for save action.");
+                }
+                renderScene(vertices, indices); // avoids issues where the game state is ahead of what's rendered - we want them to match when save is called
                 String file_name = SlMetaUI.getFileName();
                 if (file_name != null) {
                     GoLBoard.save(file_name);
@@ -150,24 +157,42 @@ public class SlSingleBatchRenderer {
                 SAVE_TO_FILE = false;
             }
 
+            // Load from file will get a file from the user and then render the scene with the new file
+
             if (LOAD_FROM_FILE) {
+                if (!HALT_RENDERING) {
+                    HALT_RENDERING = true;
+                    System.out.println("Render halted for load action.");
+                }
                 File file = SlMetaUI.getFile();
                 if (file != null) {
                     GoLBoard.load(file);
-                    renderScene(vertices, indices);
+                    renderScene(vertices, indices); // avoids any issues in timing or loading while the program is halted
                 }
                 LOAD_FROM_FILE = false;
             }
 
+            // If the RESET flag is set, the user expects the GoLBoard to reset once
+
             if (RESET) {
-                GoLBoard = new SlGoLBoardLive(MAX_ROWS, MAX_COLS);
-                RESET = false;
+                if (HALT_RENDERING) {
+                    RENDER_ONE_FRAME = true;
+                }
+                GoLBoard = new SlGoLBoardLive(MAX_ROWS, MAX_COLS); // create a new randomized GoLBoard
+                RESET = false;  // un-set RESET until the next RESET call comes in
             }
 
+            // If the RESTART flag is set, the user expects the GoLBoard to restarted once
+
             if (RESTART) {
-                GoLBoard.reset();
-                RESTART = false;
+                if (HALT_RENDERING) {
+                    RENDER_ONE_FRAME = true;
+                }
+                GoLBoard.restart(); // call the restart method and allow the board to handle restarting itself
+                RESTART = false;  // un-set RESTART until the next RESTART call comes in
             }
+
+            // If delay is set we will sleep while polling for events to remain responsive
 
             if (DELAY) {
                 long delayEnd = System.currentTimeMillis() + 500;
@@ -179,14 +204,15 @@ public class SlSingleBatchRenderer {
                         Thread.currentThread().interrupt(); // Handle interrupted exception
                     }
                     glfwPollEvents(); // Poll for events during the delay
-                    // Assume this checks for the "D" key and toggles delayActive accordingly
-                    eventHandler.processEvents();
+                    eventHandler.processEvents(); // process any incoming events during the delay polls
                 }
             }
 
+            // If USAGE is set the user expects the Meta UI to print the usage
+
             if (USAGE) {
-                SlMetaUI.printUsage();
-                USAGE = false;
+                SlMetaUI.printUsage(); // Allow the UI to print its usage
+                USAGE = false; // Toggle back to false
             }
 
             // Render call is now encapsulated in renderScene
@@ -219,12 +245,12 @@ public class SlSingleBatchRenderer {
         int ibo = glGenBuffers();
 
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
-        glBufferData(GL_ARRAY_BUFFER, (FloatBuffer) BufferUtils.
+        glBufferData(GL_ARRAY_BUFFER, BufferUtils.
                 createFloatBuffer(vertices.length).
                 put(vertices).flip(), GL_STATIC_DRAW);
         glEnableClientState(GL_VERTEX_ARRAY);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, (IntBuffer) BufferUtils.
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, BufferUtils.
                 createIntBuffer(indices.length).
                 put(indices).flip(), GL_STATIC_DRAW);
 
@@ -260,7 +286,7 @@ public class SlSingleBatchRenderer {
             } else {
                 glUniform3f(renderColorLocation, DEAD_COLOR.x, DEAD_COLOR.y, DEAD_COLOR.z);
             }
-            glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, ibps * i);
+            glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, (long) ibps * i);
         }  //  for (int i = 0; i < NUM_POLY_ROWS * NUM_POLY_COLS; ++i)
         glfwSwapBuffers(WINDOW);
     }

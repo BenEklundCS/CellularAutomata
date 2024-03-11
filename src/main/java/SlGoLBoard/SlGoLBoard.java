@@ -74,7 +74,7 @@ abstract class SlGoLBoard {
         liveCellArray[row][col] = false;
     } // private void setCellDead(int row, int col) {
 
-    private void setAllCells(boolean value) {
+    protected void setAllCells(boolean value) {
         for (boolean[] rows : liveCellArray) {
             for (boolean cell : rows) {
                 cell = value;

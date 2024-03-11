@@ -1,8 +1,6 @@
 package SlGoLBoard;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SlGoLBoardLive extends SlGoLBoard {
 
@@ -91,7 +89,7 @@ public class SlGoLBoardLive extends SlGoLBoard {
         return liveCellArray[row][col];
     }
 
-    public void reset() {
+    public void restart() {
         for (int row = 0; row < liveCellArray.length; ++row){
             System.arraycopy(initialCellArray[row], 0, liveCellArray[row], 0, liveCellArray[row].length);
         }
@@ -115,13 +113,12 @@ public class SlGoLBoardLive extends SlGoLBoard {
                     System.out.println("Successfully wrote cellular automata to file.");
                 } catch (Exception e) {
                     System.err.println("An error occurred while writing the cellular automata to file.");
-                    e.printStackTrace();
                 }
             }
             else {
                 System.out.println("File already exists.");
             }
-        } catch (Exception e) {e.printStackTrace();}
+        } catch (Exception e) {System.out.println(e.getMessage());}
     }
 
     public void load(File file) {
@@ -134,15 +131,12 @@ public class SlGoLBoardLive extends SlGoLBoard {
                 }
                 row++;
             }
+            copyCellArray(liveCellArray, initialCellArray);
             System.out.println("Loaded cellular automata from file.");
         } catch (Exception e) {
             System.err.println("An error occurred while reading the cellular automata file.");
-            e.printStackTrace();
         }
     }
-
-
-
 
     private void copyCellArray(boolean[][] src, boolean[][] dest) {
         for (int i = 0; i < src.length; i++) {
