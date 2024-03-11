@@ -9,9 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="Assignment 5 complete">
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="catchup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlMetaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlMetaUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" afterDir="false" />
@@ -215,6 +214,7 @@
       <workItem from="1710013495925" duration="13177000" />
       <workItem from="1710041584955" duration="3306000" />
       <workItem from="1710083689198" duration="11104000" />
+      <workItem from="1710163635508" duration="4345000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -360,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710091533883</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="catchup">
+      <option name="closed" value="true" />
+      <created>1710163662473</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1710163662473</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,7 +405,8 @@
     <MESSAGE value="assignment5 refactor and ACTUALLY working now. Keyboard events next" />
     <MESSAGE value="more stuff to spot, need to fix ortho HEIGHT and WIDTH" />
     <MESSAGE value="Assignment 5 complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Assignment 5 complete" />
+    <MESSAGE value="catchup" />
+    <option name="LAST_COMMIT_MESSAGE" value="catchup" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -70,7 +70,7 @@ abstract class SlGoLBoard {
         liveCellArray[row][col] = true;
     } // private void setCellAlive(int row, int col) {
 
-    private void setCellDead(int row, int col) {
+    protected void setCellDead(int row, int col) {
         liveCellArray[row][col] = false;
     } // private void setCellDead(int row, int col) {
 

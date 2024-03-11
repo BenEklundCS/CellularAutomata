@@ -230,7 +230,12 @@ public class SlSingleBatchRenderer {
                 // wait for events with a responsive timeout
                 glfwWaitEventsTimeout(0.1);
             }
-
+            /*
+            if (KILL) {
+                GoLBoard.setAllDead();
+                KILL = false;
+            }
+            */
             end_render_time = System.currentTimeMillis();
 
             if (FPS) {

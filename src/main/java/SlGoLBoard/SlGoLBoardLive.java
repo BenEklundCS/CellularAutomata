@@ -143,7 +143,15 @@ public class SlGoLBoardLive extends SlGoLBoard {
             System.arraycopy(src[i], 0, dest[i], 0, src[i].length);
         }
     }
-
+    /*
+    public void setAllDead() {
+        for (int i = 0; i < liveCellArray.length; i++) {
+            for (int j = 0; j < liveCellArray[0].length; j++) {
+                setCellDead(i, j);
+            }
+        }
+    }
+    */
     private void SlGoLBoardLivePrinter() {
         System.out.println("Call to SlGoLBoardLive received.");
     }
