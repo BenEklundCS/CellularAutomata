@@ -8,7 +8,6 @@ public class SlGoLBoardLive extends SlGoLBoard {
 
     public SlGoLBoardLive(int numRows, int numCols) {
         super(numRows, numCols);
-        SlGoLBoardLivePrinter();
         initialCellArray = new boolean[numRows][numCols];
         copyCellArray(liveCellArray, initialCellArray);
     }

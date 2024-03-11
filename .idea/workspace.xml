@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="catchup">
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="final before event rework">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlListeners/SlEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlListeners/SlEventHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
@@ -215,6 +214,9 @@
       <workItem from="1710041584955" duration="3306000" />
       <workItem from="1710083689198" duration="11104000" />
       <workItem from="1710163635508" duration="4345000" />
+      <workItem from="1710184618542" duration="2937000" />
+      <workItem from="1710196371600" duration="1143000" />
+      <workItem from="1710197882921" duration="1382000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -368,7 +370,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710163662473</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="final before event rework">
+      <option name="closed" value="true" />
+      <created>1710184733500</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1710184733500</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,7 +416,8 @@
     <MESSAGE value="more stuff to spot, need to fix ortho HEIGHT and WIDTH" />
     <MESSAGE value="Assignment 5 complete" />
     <MESSAGE value="catchup" />
-    <option name="LAST_COMMIT_MESSAGE" value="catchup" />
+    <MESSAGE value="final before event rework" />
+    <option name="LAST_COMMIT_MESSAGE" value="final before event rework" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

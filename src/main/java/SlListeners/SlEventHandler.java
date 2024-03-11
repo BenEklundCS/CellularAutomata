@@ -9,21 +9,20 @@ public class SlEventHandler {
     }
     public void processEvents() {
 
+        boolean key_pressed = false;
+
         if (SlKeyListener.isKeyPressed(GLFW_KEY_D)) {
             System.out.println(
                     (!DELAY) ? "Delay enabled." : "Delay disabled."
             );
             DELAY = !DELAY;
+            key_pressed = true;
             SlKeyListener.resetKeypressEvent(GLFW_KEY_D);
         }
 
         if (SlKeyListener.isKeyPressed(GLFW_KEY_H)) {
-            System.out.println("Render halted.");
-            HALT_RENDERING = !HALT_RENDERING;
+            key_pressed = true;
             // Make sure to render the last frame to catch up - we do this here because the HALT_RENDERING flag isn't a toggle
-            if (HALT_RENDERING) {
-                RENDER_ONE_FRAME = true;
-            }
             SlKeyListener.resetKeypressEvent(GLFW_KEY_H);
         }
 
@@ -32,18 +31,22 @@ public class SlEventHandler {
                     (!FPS) ? "Fps enabled." : "Fps disabled."
             );
             FPS = !FPS;
+            key_pressed = true;
             SlKeyListener.resetKeypressEvent(GLFW_KEY_F);
         }
 
         if (SlKeyListener.isKeyPressed(GLFW_KEY_R)) {
             System.out.println("Reset.");
             RESET = true;
+            key_pressed = true;
             SlKeyListener.resetKeypressEvent(GLFW_KEY_R);
         }
 
         if (SlKeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
-            System.out.println("Restarted.");
-            RESTART = true;
+            if (HALT_RENDERING) {
+                System.out.println("Render started.");
+                HALT_RENDERING = false;
+            }
             SlKeyListener.resetKeypressEvent(GLFW_KEY_SPACE);
         }
 
@@ -55,25 +58,28 @@ public class SlEventHandler {
 
         if (SlKeyListener.isKeyPressed(GLFW_KEY_SLASH) && SlKeyListener.isKeyPressed(GLFW_KEY_LEFT_SHIFT)) {
             USAGE = true;
+            key_pressed = true;
             SlKeyListener.resetKeypressEvent(GLFW_KEY_SLASH);
             SlKeyListener.resetKeypressEvent(GLFW_KEY_LEFT_SHIFT);
         }
 
         if (SlKeyListener.isKeyPressed(GLFW_KEY_S)) {
             SAVE_TO_FILE = true;
+            key_pressed = true;
             SlKeyListener.resetKeypressEvent(GLFW_KEY_S);
         }
 
         if (SlKeyListener.isKeyPressed(GLFW_KEY_L)) {
             LOAD_FROM_FILE = true;
+            key_pressed = true;
             SlKeyListener.resetKeypressEvent(GLFW_KEY_L);
         }
-        /*
-        if (SlKeyListener.isKeyPressed(GLFW_KEY_K)) {
-            KILL = true;
-            SlKeyListener.resetKeypressEvent(GLFW_KEY_K);
+
+        // If key_pressed then we halt until the user resumes, we don't need to do this if the app is already halted though
+        if (key_pressed && !HALT_RENDERING) {
+            System.out.println("Render halted.");
+            HALT_RENDERING = true;
         }
-        */
     }
 
     private void init() {

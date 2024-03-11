@@ -145,14 +145,10 @@ public class SlSingleBatchRenderer {
                 // - get a file name from the user
 
             if (SAVE_TO_FILE) {
-                if (!HALT_RENDERING) {
-                    HALT_RENDERING = true;
-                    System.out.println("Render halted for save action.");
-                }
-                renderScene(vertices, indices); // avoids issues where the game state is ahead of what's rendered - we want them to match when save is called
+                renderScene(vertices, indices); // render the pre-save state so we ensure we're caught up
                 String file_name = SlMetaUI.getFileName();
                 if (file_name != null) {
-                    GoLBoard.save(file_name);
+                    GoLBoard.save(file_name); // save to the file
                 }
                 SAVE_TO_FILE = false;
             }
@@ -160,14 +156,10 @@ public class SlSingleBatchRenderer {
             // Load from file will get a file from the user and then render the scene with the new file
 
             if (LOAD_FROM_FILE) {
-                if (!HALT_RENDERING) {
-                    HALT_RENDERING = true;
-                    System.out.println("Render halted for load action.");
-                }
                 File file = SlMetaUI.getFile();
                 if (file != null) {
-                    GoLBoard.load(file);
-                    renderScene(vertices, indices); // avoids any issues in timing or loading while the program is halted
+                    GoLBoard.load(file); // load from the file
+                    renderScene(vertices, indices); // render the update
                 }
                 LOAD_FROM_FILE = false;
             }
@@ -175,21 +167,9 @@ public class SlSingleBatchRenderer {
             // If the RESET flag is set, the user expects the GoLBoard to reset once
 
             if (RESET) {
-                if (HALT_RENDERING) {
-                    RENDER_ONE_FRAME = true;
-                }
                 GoLBoard = new SlGoLBoardLive(MAX_ROWS, MAX_COLS); // create a new randomized GoLBoard
-                RESET = false;  // un-set RESET until the next RESET call comes in
-            }
-
-            // If the RESTART flag is set, the user expects the GoLBoard to restarted once
-
-            if (RESTART) {
-                if (HALT_RENDERING) {
-                    RENDER_ONE_FRAME = true;
-                }
-                GoLBoard.restart(); // call the restart method and allow the board to handle restarting itself
-                RESTART = false;  // un-set RESTART until the next RESTART call comes in
+                renderScene(vertices, indices); // render it
+                RESET = false;
             }
 
             // If delay is set we will sleep while polling for events to remain responsive
@@ -216,26 +196,15 @@ public class SlSingleBatchRenderer {
             }
 
             // Render call is now encapsulated in renderScene
-            if (!HALT_RENDERING || RENDER_ONE_FRAME) {
+            if (!HALT_RENDERING) {
                 renderScene(vertices, indices);
-                if (RENDER_ONE_FRAME) { // Render one frame toggle - allows RESET and REFRESH
-                    RENDER_ONE_FRAME = false; // Reset flag after rendering
-                    HALT_RENDERING = true; // Ensure the game pauses again
-                }
-                else { // Only update the cell array when the game is not halted
-                    GoLBoard.updateNextCellArray();
-                }
+                GoLBoard.updateNextCellArray(); // never update to the next cell array unless the renderer is un-halted
             }
             else {
                 // wait for events with a responsive timeout
                 glfwWaitEventsTimeout(0.1);
             }
-            /*
-            if (KILL) {
-                GoLBoard.setAllDead();
-                KILL = false;
-            }
-            */
+
             end_render_time = System.currentTimeMillis();
 
             if (FPS) {
