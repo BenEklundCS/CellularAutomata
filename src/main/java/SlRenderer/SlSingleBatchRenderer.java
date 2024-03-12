@@ -32,7 +32,6 @@ public class SlSingleBatchRenderer {
     private int vpMatLocation = 0;
     private int renderColorLocation = 0;
     private SlGoLBoardLive GoLBoard;
-    private final SlCamera camera = new SlCamera();
 
     public SlSingleBatchRenderer() {
         slSingleBatchPrinter();
@@ -111,12 +110,6 @@ public class SlSingleBatchRenderer {
         GoLBoard = new SlGoLBoardLive(MAX_ROWS, MAX_COLS);
 
         //
-        // Vertices / Indices generator
-        //
-
-        SlGridOfSquares grid = new SlGridOfSquares();
-
-        //
         // Set up event handler and register callbacks
         //
 
@@ -137,15 +130,12 @@ public class SlSingleBatchRenderer {
 
             eventHandler.processEvents();
 
-            float[] vertices = grid.getVertices();
-            int[] indices = grid.getIndices();
-
             // When processing a file save action, we do the following here:
                 // - render the scene to reflect the CURRENT game state
                 // - get a file name from the user
 
             if (SAVE_TO_FILE) {
-                renderScene(vertices, indices); // render the pre-save state so we ensure we're caught up
+                renderScene(); // render the pre-save state so we ensure we're caught up
                 String file_name = SlMetaUI.getFileName();
                 if (file_name != null) {
                     GoLBoard.save(file_name); // save to the file
@@ -158,18 +148,28 @@ public class SlSingleBatchRenderer {
             if (LOAD_FROM_FILE) {
                 File file = SlMetaUI.getFile();
                 if (file != null) {
+                    //GoLBoard.setAllDead(); // allow loading of smaller boards onto larger spaces
                     GoLBoard.load(file); // load from the file
-                    renderScene(vertices, indices); // render the update
                 }
                 LOAD_FROM_FILE = false;
+                // Render the scene a few times to ensure GL catches up with the new Game State
+                for (int i = 0; i < 10; i++) {
+                    renderScene();
+                }
             }
 
             // If the RESET flag is set, the user expects the GoLBoard to reset once
 
             if (RESET) {
                 GoLBoard = new SlGoLBoardLive(MAX_ROWS, MAX_COLS); // create a new randomized GoLBoard
-                renderScene(vertices, indices); // render it
+                RENDER_ONE = true;
                 RESET = false;
+            }
+
+            if (RESTART) {
+                GoLBoard.restart();
+                RENDER_ONE = true;
+                RESTART = false;
             }
 
             // If delay is set we will sleep while polling for events to remain responsive
@@ -196,10 +196,17 @@ public class SlSingleBatchRenderer {
             }
 
             // Render call is now encapsulated in renderScene
-            if (!HALT_RENDERING) {
-                renderScene(vertices, indices);
-                GoLBoard.updateNextCellArray(); // never update to the next cell array unless the renderer is un-halted
+            if (!HALT_RENDERING || RENDER_ONE) {
+                renderScene();
+                if (RENDER_ONE) {
+                    HALT_RENDERING = true;
+                    RENDER_ONE = false;
+                }
+                else {
+                    GoLBoard.updateNextCellArray(); // never update to the next cell array unless the renderer is un-halted
+                }
             }
+
             else {
                 // wait for events with a responsive timeout
                 glfwWaitEventsTimeout(0.1);
@@ -212,7 +219,20 @@ public class SlSingleBatchRenderer {
             }
         }
     } // renderObjects
-    private void renderScene(float[] vertices, int[] indices) {
+    private void renderScene() {
+
+        // Update the viewport
+
+        glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT); // Update the OpenGL viewport here
+
+        //
+        // Vertices / Indices generator
+        //
+
+        SlGridOfSquares grid = new SlGridOfSquares(MAX_ROWS, MAX_COLS);
+
+        float[] vertices = grid.getVertices();
+        int[] indices = grid.getIndices();
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         int vbo = glGenBuffers();
@@ -235,8 +255,8 @@ public class SlSingleBatchRenderer {
         //
         // Use the camera to setProjectionOrtho and generate a viewProjMatrix
         //
-
-        camera.setProjectionOrtho();
+        SlCamera camera = new SlCamera();
+        camera.setProjectionOrtho(0, WIN_WIDTH, 0, WIN_HEIGHT, 0, 10);
         Matrix4f viewProjMatrix = camera.getProjectionMatrix();
 
         glUniformMatrix4fv(vpMatLocation, false,

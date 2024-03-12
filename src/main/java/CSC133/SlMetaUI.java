@@ -50,7 +50,7 @@ public class SlMetaUI {
         System.out.format(usageTemplate, "H", "Halt render");
         System.out.format(usageTemplate, "D", "Delay render");
         System.out.format(usageTemplate, "F", "Display FPS");
-        System.out.format(usageTemplate, "SPACE", "Restart render");
+        System.out.format(usageTemplate, "SPACE", "Start render");
         System.out.format(usageTemplate, "R", "Reset render");
         System.out.format(usageTemplate, "S", "Save to file");
         System.out.format(usageTemplate, "L", "Load from file");

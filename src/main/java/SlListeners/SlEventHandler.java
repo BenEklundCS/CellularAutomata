@@ -1,5 +1,7 @@
 package SlListeners;
 
+import org.lwjgl.opengl.GL;
+
 import static CSC133.Spot.*;
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -73,6 +75,12 @@ public class SlEventHandler {
             LOAD_FROM_FILE = true;
             key_pressed = true;
             SlKeyListener.resetKeypressEvent(GLFW_KEY_L);
+        }
+
+        if (SlKeyListener.isKeyPressed(GLFW_KEY_C)) {
+            RESTART = true;
+            key_pressed = true;
+            SlKeyListener.resetKeypressEvent(GLFW_KEY_C);
         }
 
         // If key_pressed then we halt until the user resumes, we don't need to do this if the app is already halted though

@@ -6,6 +6,7 @@ import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.glViewport;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 import static CSC133.Spot.*;
@@ -69,6 +70,7 @@ public class SlWindow {
                         if (w > 0 && h > 0) {
                             WIN_WIDTH = w;
                             WIN_HEIGHT = h;
+                            glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT); // Update the OpenGL viewport here
                         }
                     }
                 });
@@ -80,6 +82,12 @@ public class SlWindow {
         glfwSwapInterval(VSYNC_INTERVAL);
         glfwShowWindow(WINDOW);
     } // private void initGLFWindow()
+
+    public static void resizeWindow(int width, int height) {
+        if (WINDOW != NULL) {
+            glfwSetWindowSize(WINDOW, width, height);
+        }
+    }
 
     public static void destroyGLFWindow() {
         glfwDestroyWindow(WINDOW);

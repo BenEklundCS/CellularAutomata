@@ -5,8 +5,12 @@ import static CSC133.Spot.*;
 public class SlGridOfSquares {
     private final int verticesPerSquare = 4;
 
-    SlGridOfSquares() {
+    private int maxRows;
+    private int maxCols;
 
+    SlGridOfSquares(int rows, int cols) {
+        maxRows = rows;
+        maxCols = cols;
     } // SlGridOfSquares() {
 
     public float[] getVertices() {
@@ -18,10 +22,10 @@ public class SlGridOfSquares {
         float yMin = yMax - LENGTH;
         int index = 0;
 
-        float[] vertices = new float[verticesPerSquare * floatsPerVertex * MAX_ROWS * MAX_COLS];
+        float[] vertices = new float[verticesPerSquare * floatsPerVertex * maxRows * maxCols];
 
-        for (int i = 0; i < MAX_ROWS; i++) {
-            for (int j = 0; j < MAX_COLS; j++) {
+        for (int i = 0; i < maxRows; i++) {
+            for (int j = 0; j < maxCols; j++) {
                 vertices[index++] = xMin;
                 vertices[index++] = yMin;
                 vertices[index++] = xMax;
@@ -44,7 +48,7 @@ public class SlGridOfSquares {
     public int[] getIndices() {
         final int indicesPerSquare = 6;
 
-        int[] indices = new int[MAX_ROWS * MAX_COLS * indicesPerSquare];
+        int[] indices = new int[maxRows * maxCols * indicesPerSquare];
         int vIndex = 0, i = 0;
 
         while (i < indices.length) {

@@ -9,7 +9,7 @@ public class SlMouseListener {
     private static SlMouseListener my_instance;
     private double scrollX, scrollY;
     double xPos, yPos, lastY, lastX;
-    private boolean mouseButtonPressed[] = new boolean[3];
+    private final boolean[] mouseButtonPressed = new boolean[3];
     private boolean isDragging;
 
     private SlMouseListener() {

@@ -9,11 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="final before event rework">
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlMetaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlMetaUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlListeners/SlEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlListeners/SlEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlListeners/SlMouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlListeners/SlMouseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +80,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Assignment5&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ben/Programming/CSC 133/Assignment/src/main/java/SlListeners&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ben/Programming/CSC 133/Assignment&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -91,6 +95,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/java/SlListeners" />
       <recent name="$PROJECT_DIR$/src/main/java/CSC133" />
     </key>
@@ -216,7 +221,10 @@
       <workItem from="1710163635508" duration="4345000" />
       <workItem from="1710184618542" duration="2937000" />
       <workItem from="1710196371600" duration="1143000" />
-      <workItem from="1710197882921" duration="1382000" />
+      <workItem from="1710197882921" duration="4224000" />
+      <workItem from="1710204969062" duration="94000" />
+      <workItem from="1710210971371" duration="5660000" />
+      <workItem from="1710248410976" duration="3742000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -378,7 +386,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710184733500</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="done">
+      <option name="closed" value="true" />
+      <created>1710199268940</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1710199268940</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,7 +433,8 @@
     <MESSAGE value="Assignment 5 complete" />
     <MESSAGE value="catchup" />
     <MESSAGE value="final before event rework" />
-    <option name="LAST_COMMIT_MESSAGE" value="final before event rework" />
+    <MESSAGE value="done" />
+    <option name="LAST_COMMIT_MESSAGE" value="done" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

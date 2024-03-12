@@ -1,16 +1,22 @@
 package SlGoLBoard;
 
+import CSC133.Spot;
+
 import java.io.*;
+import java.util.Arrays;
+
+import static CSC133.Spot.SET_DIMENSIONS;
 
 public class SlGoLBoardLive extends SlGoLBoard {
 
-    private final boolean[][] initialCellArray;
+    private boolean[][] initialCellArray;
 
     public SlGoLBoardLive(int numRows, int numCols) {
         super(numRows, numCols);
         initialCellArray = new boolean[numRows][numCols];
         copyCellArray(liveCellArray, initialCellArray);
     }
+
     @Override
     public int countLiveTwoDegreeNeighbors(int row, int col) {
         boolean[][] liveCellArray = getLiveCellArray();
@@ -84,6 +90,7 @@ public class SlGoLBoardLive extends SlGoLBoard {
 
         return retVal;
     }  // public int updateNextCellArray()
+
     public boolean isAlive(int row, int col) {
         return liveCellArray[row][col];
     }
@@ -93,19 +100,27 @@ public class SlGoLBoardLive extends SlGoLBoard {
             System.arraycopy(initialCellArray[row], 0, liveCellArray[row], 0, liveCellArray[row].length);
         }
     }
+
     public void save(String file_name) {
+        // Ensure the file ends with .ca
         if (!file_name.endsWith(".ca")) {
             file_name += ".ca";
         }
+        // Create the file
         File f = new File(file_name);
+        // Write to it
         try {
             if (f.createNewFile()) {
                 System.out.println("File created.");
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_name))) {
+                    writer.write(String.valueOf(NUM_ROWS));
+                    writer.newLine();
+                    writer.write(String.valueOf(NUM_COLS));
+                    writer.newLine();
                     for (boolean[] row : liveCellArray) {
-                        for (boolean value : row) {
-                            // Write '1' for true and '0' for false
-                            writer.write(value ? '1' : '0');
+                        for (int i = 0; i < row.length; i++) {
+                            // Write '1' for true and '0' for false, separated by spaces
+                            writer.write((row[i] ? '1' : '0') + (i < row.length - 1 ? " " : ""));
                         }
                         writer.newLine(); // Move to the next line after writing each row
                     }
@@ -117,32 +132,57 @@ public class SlGoLBoardLive extends SlGoLBoard {
             else {
                 System.out.println("File already exists.");
             }
-        } catch (Exception e) {System.out.println(e.getMessage());}
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void load(File file) {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            // Read the first two lines containing the number of rows and columns
+            int numRows = Integer.parseInt(br.readLine().trim());
+            int numCols = Integer.parseInt(br.readLine().trim());
+
+            // Apply the new dimensions to the engine state
+            SET_DIMENSIONS(numRows, numCols);
+            // Re-initialize the game board to the new dimensions
+            initializeBoard(numRows, numCols);
+
             String line;
             int row = 0;
-            while ((line = br.readLine()) != null && row < NUM_ROWS) {
-                for (int col = 0; col < line.length() && col < NUM_COLS; col++) {
-                    liveCellArray[row][col] = (line.charAt(col) == '1');
+            while ((line = br.readLine()) != null && row < numRows) {
+                // Split by spaces to get cell states
+                String[] values = line.trim().split("\\s+");
+                if (values.length == numCols) {
+                    for (int col = 0; col < numCols; col++) {
+                        // Set the cell state based on the '1' or '0' value
+                        liveCellArray[row][col] = "1".equals(values[col]);
+                    }
+                    row++;
+                } else {
+                    // Handle the error for incorrect number of columns
+                    System.err.println("Incorrect number of columns in row " + row);
+                    break;
                 }
-                row++;
             }
             copyCellArray(liveCellArray, initialCellArray);
             System.out.println("Loaded cellular automata from file.");
-        } catch (Exception e) {
-            System.err.println("An error occurred while reading the cellular automata file.");
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("An error occurred while reading the cellular automata file: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.err.println("File format error: " + e.getMessage());
         }
     }
+
 
     private void copyCellArray(boolean[][] src, boolean[][] dest) {
         for (int i = 0; i < src.length; i++) {
             System.arraycopy(src[i], 0, dest[i], 0, src[i].length);
         }
     }
-    /*
+
     public void setAllDead() {
         for (int i = 0; i < liveCellArray.length; i++) {
             for (int j = 0; j < liveCellArray[0].length; j++) {
@@ -150,7 +190,20 @@ public class SlGoLBoardLive extends SlGoLBoard {
             }
         }
     }
-    */
+
+    public void initializeBoard(int numRows, int numCols) {
+        this.NUM_ROWS = numRows;
+        this.NUM_COLS = numCols;
+        this.cellArrayA = new boolean[numRows][numCols];
+        this.cellArrayB = new boolean[numRows][numCols];
+        // Any other initialization logic that's shared between the constructors
+        // and the load method can go here
+        this.liveCellArray = cellArrayA;
+        this.initialCellArray = liveCellArray;
+        this.nextCellArray = cellArrayB;
+    }
+
+
     private void SlGoLBoardLivePrinter() {
         System.out.println("Call to SlGoLBoardLive received.");
     }
