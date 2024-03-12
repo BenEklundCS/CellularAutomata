@@ -68,18 +68,20 @@ public class SlGoLBoardLive extends SlGoLBoard {
                 }
                 else {
                     // 1. Live Neighbors < 2 --> Kill
-                    if (nln < 2) {
-                        nextCellArray[row][col] = false;
-                    }
-                    // 2. Live Neighbors == 2 || Live Neighbors == 3 --> Retain
-                    // 4. Dead with Live Neighbors == 3 --> Alive again
-                    else if (nln == 2 || nln == 3) {
+                    if (ccs && (nln == 2 || nln == 3)) {
+                        // Live cell with 2 or 3 neighbors survives
                         nextCellArray[row][col] = true;
                     }
-                    // 3. Live Neighbors > 3 --> Kill
-                    else { // nln > 3
+                    else if (!ccs && nln == 3) {
+                        // Dead cell with exactly 3 neighbors becomes alive
+                        nextCellArray[row][col] = true;
+                        ++retVal;
+                    }
+                    else {
+                        // Cell dies or remains dead
                         nextCellArray[row][col] = false;
                     }
+
                 }
             }  // for (int row = 0; ...)
         }  //  for (int col = 0; ...)
@@ -143,8 +145,6 @@ public class SlGoLBoardLive extends SlGoLBoard {
             int numRows = Integer.parseInt(br.readLine().trim());
             int numCols = Integer.parseInt(br.readLine().trim());
 
-            // Apply the new dimensions to the engine state
-            SET_DIMENSIONS(numRows, numCols);
             // Re-initialize the game board to the new dimensions
             initializeBoard(numRows, numCols);
 
@@ -201,6 +201,14 @@ public class SlGoLBoardLive extends SlGoLBoard {
         this.liveCellArray = cellArrayA;
         this.initialCellArray = liveCellArray;
         this.nextCellArray = cellArrayB;
+    }
+
+    public int getNumRows() {
+        return NUM_ROWS;
+    }
+
+    public int getNumCols() {
+        return NUM_COLS;
     }
 
 

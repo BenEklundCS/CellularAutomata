@@ -149,11 +149,18 @@ public class SlSingleBatchRenderer {
                 File file = SlMetaUI.getFile();
                 if (file != null) {
                     //GoLBoard.setAllDead(); // allow loading of smaller boards onto larger spaces
-                    GoLBoard.load(file); // load from the file
+                    GoLBoard.setAllDead();
+                    GoLBoard.load(file); // load GoLBoard from the file
+                    int numRows = GoLBoard.getNumRows();
+                    int numCols = GoLBoard.getNumCols();
+                    // Apply the new dimensions to the engine state
+                        // MUST BE CALLED
+                    SET_DIMENSIONS(numRows, numCols);
                 }
                 LOAD_FROM_FILE = false;
                 // Render the scene a few times to ensure GL catches up with the new Game State
-                for (int i = 0; i < 10; i++) {
+                int frames = 15;
+                for (int i = 0; i < frames; i++) {
                     renderScene();
                 }
             }

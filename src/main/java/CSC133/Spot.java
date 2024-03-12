@@ -11,8 +11,8 @@ public class Spot {
     // Application settings and properties
     public static int WIN_POS_X = 30, WIN_POS_Y = 90; // (30, 90)
     public static long WINDOW = NULL; // NULL
-    public static int MAX_ROWS = 25; // 18
-    public static int MAX_COLS = 50; // 20
+    public static int MAX_ROWS = 100; // 18
+    public static int MAX_COLS = 100; // 20
     public static void SET_DIMENSIONS(int rows, int cols) {
         MAX_ROWS = rows;
         MAX_COLS = cols;
@@ -25,8 +25,8 @@ public class Spot {
         }
     }
     public final static int OFFSET = 40;
-    public final static int PADDING = 15; // 15
-    public final static int LENGTH = 30; // 30
+    public final static int PADDING = 5; // 15
+    public final static int LENGTH = 15; // 30
     public static int WIN_WIDTH = setWindowCalc(MAX_COLS); // MAX_COLS
     public static int WIN_HEIGHT = setWindowCalc(MAX_ROWS); // MAX_ROWS
 
