@@ -196,11 +196,13 @@ public class SlGoLBoardLive extends SlGoLBoard {
         this.NUM_COLS = numCols;
         this.cellArrayA = new boolean[numRows][numCols];
         this.cellArrayB = new boolean[numRows][numCols];
+        // Make sure the initialCellArray / cellArrayC do not object link to liveCellArray when re-initializing
+        boolean[][] cellArrayC = new boolean[numRows][numCols];
         // Any other initialization logic that's shared between the constructors
         // and the load method can go here
         this.liveCellArray = cellArrayA;
-        this.initialCellArray = liveCellArray;
         this.nextCellArray = cellArrayB;
+        this.initialCellArray = cellArrayC;
     }
 
     public int getNumRows() {

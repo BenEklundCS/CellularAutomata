@@ -79,14 +79,20 @@ public class SlEventHandler {
 
         if (SlKeyListener.isKeyPressed(GLFW_KEY_C)) {
             RESTART = true;
+            System.out.println("Render restarted.");
             key_pressed = true;
             SlKeyListener.resetKeypressEvent(GLFW_KEY_C);
         }
 
         // If key_pressed then we halt until the user resumes, we don't need to do this if the app is already halted though
-        if (key_pressed && !HALT_RENDERING) {
-            System.out.println("Render halted.");
-            HALT_RENDERING = true;
+        if (key_pressed) {
+            // If a key event takes place, always render one frame
+            RENDER_ONE = true;
+            if (!HALT_RENDERING) {
+                System.out.println("Render halted.");
+                HALT_RENDERING = true;
+                // Always render one frame when halting so render matches game state
+            }
         }
     }
 

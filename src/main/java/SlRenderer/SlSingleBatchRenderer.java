@@ -135,7 +135,6 @@ public class SlSingleBatchRenderer {
                 // - get a file name from the user
 
             if (SAVE_TO_FILE) {
-                renderScene(); // render the pre-save state so we ensure we're caught up
                 String file_name = SlMetaUI.getFileName();
                 if (file_name != null) {
                     GoLBoard.save(file_name); // save to the file
