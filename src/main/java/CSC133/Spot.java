@@ -56,6 +56,5 @@ public class Spot {
     public static boolean USAGE = false;
     public static boolean SAVE_TO_FILE = false;
     public static boolean LOAD_FROM_FILE = false;
-    public static boolean RENDER_ONE = false;
     //public static boolean KILL = false;
 }

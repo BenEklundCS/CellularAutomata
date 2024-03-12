@@ -158,23 +158,18 @@ public class SlSingleBatchRenderer {
                 }
                 LOAD_FROM_FILE = false;
                 // Render the scene a few times to ensure GL catches up with the new Game State
-                int frames = 15;
-                for (int i = 0; i < frames; i++) {
-                    renderScene();
-                }
+                glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT); // Update the OpenGL viewport here
             }
 
             // If the RESET flag is set, the user expects the GoLBoard to reset once
 
             if (RESET) {
                 GoLBoard = new SlGoLBoardLive(MAX_ROWS, MAX_COLS); // create a new randomized GoLBoard
-                RENDER_ONE = true;
                 RESET = false;
             }
 
             if (RESTART) {
                 GoLBoard.restart();
-                RENDER_ONE = true;
                 RESTART = false;
             }
 
@@ -202,17 +197,11 @@ public class SlSingleBatchRenderer {
             }
 
             // Render call is now encapsulated in renderScene
-            if (!HALT_RENDERING || RENDER_ONE) {
-                renderScene();
-                if (RENDER_ONE) {
-                    HALT_RENDERING = true;
-                    RENDER_ONE = false;
-                }
-                else {
-                    GoLBoard.updateNextCellArray(); // never update to the next cell array unless the renderer is un-halted
-                }
-            }
+            if (!HALT_RENDERING) {
 
+                GoLBoard.updateNextCellArray(); // never update to the next cell array unless the renderer is un-halted
+
+            }
             else {
                 // wait for events with a responsive timeout
                 glfwWaitEventsTimeout(0.1);
@@ -223,6 +212,8 @@ public class SlSingleBatchRenderer {
             if (FPS) {
                 SlMetaUI.fps(start_render_time, end_render_time);
             }
+
+            renderScene();
         }
     } // renderObjects
     private void renderScene() {
