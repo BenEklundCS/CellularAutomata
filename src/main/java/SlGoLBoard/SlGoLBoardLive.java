@@ -104,11 +104,8 @@ public class SlGoLBoardLive extends SlGoLBoard {
     }
 
     public void save(String file_name) {
-        // Ensure the file ends with .ca
-        if (!file_name.endsWith(".ca")) {
-            file_name += ".ca";
-        }
-        // Create the file
+        // Ensure the file ends with .ca, and create the file
+        file_name = setFileName(file_name);
         File f = new File(file_name);
         // Write to it
         try {
@@ -137,6 +134,13 @@ public class SlGoLBoardLive extends SlGoLBoard {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private String setFileName(String file_name) {
+        if (!file_name.endsWith(".ca")) {
+            file_name += ".ca";
+        }
+        return file_name;
     }
 
     public void load(File file) {
@@ -212,7 +216,6 @@ public class SlGoLBoardLive extends SlGoLBoard {
     public int getNumCols() {
         return NUM_COLS;
     }
-
 
     private void SlGoLBoardLivePrinter() {
         System.out.println("Call to SlGoLBoardLive received.");

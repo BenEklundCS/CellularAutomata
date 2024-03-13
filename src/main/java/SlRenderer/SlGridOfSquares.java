@@ -5,8 +5,8 @@ import static CSC133.Spot.*;
 public class SlGridOfSquares {
     private final int verticesPerSquare = 4;
 
-    private int maxRows;
-    private int maxCols;
+    private final int maxRows;
+    private final int maxCols;
 
     SlGridOfSquares(int rows, int cols) {
         maxRows = rows;

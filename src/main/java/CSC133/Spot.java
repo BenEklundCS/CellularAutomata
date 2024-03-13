@@ -11,8 +11,8 @@ public class Spot {
     // Application settings and properties
     public static int WIN_POS_X = 30, WIN_POS_Y = 90; // (30, 90)
     public static long WINDOW = NULL; // NULL
-    public static int MAX_ROWS = 70; // 18
-    public static int MAX_COLS = 140; // 20
+    public static int MAX_ROWS = 18; // 18
+    public static int MAX_COLS = 20; // 20
     public static void SET_DIMENSIONS(int rows, int cols) {
         MAX_ROWS = rows;
         MAX_COLS = cols;
@@ -22,11 +22,12 @@ public class Spot {
         if(WINDOW != NULL) {
             // Resize the GLFW window to match the new dimensions
             SlWindow.resizeWindow(WIN_WIDTH, WIN_HEIGHT);
+            glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT); // Update the OpenGL viewport here
         }
     }
     public final static int OFFSET = 40;
     public final static int PADDING = 5; // 15
-    public final static int LENGTH = 15; // 30
+    public final static int LENGTH = 30; // 30
     public static int WIN_WIDTH = setWindowCalc(MAX_COLS); // MAX_COLS
     public static int WIN_HEIGHT = setWindowCalc(MAX_ROWS); // MAX_ROWS
 

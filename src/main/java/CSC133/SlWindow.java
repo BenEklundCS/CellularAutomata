@@ -49,7 +49,7 @@ public class SlWindow {
         glfwWindowHint(GLFW_SAMPLES, MSAA);
 
         // This can never happen twice
-        WINDOW = glfwCreateWindow(WIN_WIDTH, WIN_HEIGHT, "CSC 133", NULL, NULL);
+        WINDOW = glfwCreateWindow(WIN_WIDTH, WIN_HEIGHT, "Conway's Game of Life", NULL, NULL);
 
         if (WINDOW == NULL)
             throw new RuntimeException("Failed to create the GLFW window");
@@ -70,7 +70,6 @@ public class SlWindow {
                         if (w > 0 && h > 0) {
                             WIN_WIDTH = w;
                             WIN_HEIGHT = h;
-                            glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT); // Update the OpenGL viewport here
                         }
                     }
                 });

@@ -9,10 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="NOW we good">
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="yay">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlMetaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlMetaUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -230,6 +232,9 @@
       <workItem from="1710286081315" duration="1276000" />
       <workItem from="1710287451176" duration="201000" />
       <workItem from="1710287667897" duration="405000" />
+      <workItem from="1710288107049" duration="540000" />
+      <workItem from="1710288909851" duration="136000" />
+      <workItem from="1710289262499" duration="1290000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -415,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710256554024</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="yay">
+      <option name="closed" value="true" />
+      <created>1710288141706</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1710288141706</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,7 +470,8 @@
     <MESSAGE value="done" />
     <MESSAGE value="load works with workaround" />
     <MESSAGE value="NOW we good" />
-    <option name="LAST_COMMIT_MESSAGE" value="NOW we good" />
+    <MESSAGE value="yay" />
+    <option name="LAST_COMMIT_MESSAGE" value="yay" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
