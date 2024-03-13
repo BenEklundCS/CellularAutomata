@@ -70,6 +70,7 @@ public class SlWindow {
                         if (w > 0 && h > 0) {
                             WIN_WIDTH = w;
                             WIN_HEIGHT = h;
+                            glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT); // Update the OpenGL viewport here
                         }
                     }
                 });

@@ -11,8 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="NOW we good">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SlListeners/SlEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlListeners/SlEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlMetaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlMetaUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -226,6 +226,10 @@
       <workItem from="1710269497830" duration="43000" />
       <workItem from="1710269704993" duration="19000" />
       <workItem from="1710275185442" duration="1700000" />
+      <workItem from="1710280670506" duration="79000" />
+      <workItem from="1710286081315" duration="1276000" />
+      <workItem from="1710287451176" duration="201000" />
+      <workItem from="1710287667897" duration="405000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />

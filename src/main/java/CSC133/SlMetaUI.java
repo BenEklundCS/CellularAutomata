@@ -24,6 +24,7 @@ public class SlMetaUI {
         }
         return null;
     }
+
     public static File getFile() {
 
         JFileChooser fileChooser = new JFileChooser();
@@ -41,7 +42,6 @@ public class SlMetaUI {
         }
         return null;
     }
-
 
     public static void printUsage() {
         String usageTemplate = "%-15s: %s%n"; // Left-align with a width of 15 characters for the key
