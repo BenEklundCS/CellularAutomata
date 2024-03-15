@@ -1,11 +1,6 @@
 package SlGoLBoard;
 
-import CSC133.Spot;
-
 import java.io.*;
-import java.util.Arrays;
-
-import static CSC133.Spot.SET_DIMENSIONS;
 
 public class SlGoLBoardLive extends SlGoLBoard {
 

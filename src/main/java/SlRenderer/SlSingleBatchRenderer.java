@@ -114,6 +114,8 @@ public class SlSingleBatchRenderer {
 
         SlEventHandler eventHandler = new SlEventHandler();
 
+        SlCamera camera = new SlCamera();
+
         long start_render_time;
         long end_render_time;
 
@@ -235,7 +237,6 @@ public class SlSingleBatchRenderer {
             //
             // Use the camera to setProjectionOrtho and generate a viewProjMatrix
             //
-            SlCamera camera = new SlCamera();
             camera.setProjectionOrtho(0, WIN_WIDTH, 0, WIN_HEIGHT, 0, 10);
             Matrix4f viewProjMatrix = camera.getProjectionMatrix();
 

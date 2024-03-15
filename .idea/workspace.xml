@@ -9,12 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="yay">
+    <list default="true" id="ed47775c-243a-4ced-9678-c2e7b142d948" name="Changes" comment="yay2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/SlWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CSC133/Spot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlGoLBoard/SlGoLBoardLive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlGridOfSquares.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SlRenderer/SlSingleBatchRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +50,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Assignment4" />
+        <entry key="$PROJECT_DIR$" value="Assignment5" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -76,7 +74,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Assignment5&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;BenGOL&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/ben/Programming/CSC 133/Assignment&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -234,7 +232,15 @@
       <workItem from="1710287667897" duration="405000" />
       <workItem from="1710288107049" duration="540000" />
       <workItem from="1710288909851" duration="136000" />
-      <workItem from="1710289262499" duration="1290000" />
+      <workItem from="1710289262499" duration="1565000" />
+      <workItem from="1710291499175" duration="76000" />
+      <workItem from="1710292441522" duration="19000" />
+      <workItem from="1710292511175" duration="2000" />
+      <workItem from="1710296300648" duration="189000" />
+      <workItem from="1710297371787" duration="1000" />
+      <workItem from="1710299294381" duration="1199000" />
+      <workItem from="1710369237903" duration="993000" />
+      <workItem from="1710370570432" duration="2479000" />
     </task>
     <task id="LOCAL-00001" summary="current">
       <option name="closed" value="true" />
@@ -428,7 +434,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710288141706</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="yay2">
+      <option name="closed" value="true" />
+      <created>1710290613095</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1710290613095</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -446,7 +460,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="current" />
     <MESSAGE value="base" />
     <MESSAGE value="catchup commit" />
     <MESSAGE value="destroyGLFWindow" />
@@ -471,7 +484,8 @@
     <MESSAGE value="load works with workaround" />
     <MESSAGE value="NOW we good" />
     <MESSAGE value="yay" />
-    <option name="LAST_COMMIT_MESSAGE" value="yay" />
+    <MESSAGE value="yay2" />
+    <option name="LAST_COMMIT_MESSAGE" value="yay2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
