@@ -1,4 +1,4 @@
-package CSC133;
+package SlGoL;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;

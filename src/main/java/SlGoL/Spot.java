@@ -1,4 +1,4 @@
-package CSC133;
+package SlGoL;
 
 import SlGoLBoard.SlGoLBoardLive;
 import org.joml.Vector4f;

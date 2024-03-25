@@ -1,6 +1,6 @@
 package SlRenderer;
 
-import static CSC133.Spot.*;
+import static SlGoL.Spot.*;
 
 public class SlGridOfSquares {
     private final int verticesPerSquare = 4;

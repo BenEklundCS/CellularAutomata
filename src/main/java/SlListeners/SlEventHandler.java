@@ -2,7 +2,7 @@ package SlListeners;
 
 import org.lwjgl.opengl.GL;
 
-import static CSC133.Spot.*;
+import static SlGoL.Spot.*;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class SlEventHandler {
