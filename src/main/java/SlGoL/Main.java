@@ -1,4 +1,4 @@
-package CSC133;
+package SlGoL;
 
 import SlRenderer.SlSingleBatchRenderer;
 

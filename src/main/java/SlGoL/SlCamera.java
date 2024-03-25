@@ -1,9 +1,9 @@
-package CSC133;
+package SlGoL;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import static CSC133.Spot.*;
+import static SlGoL.Spot.*;
 
 public class SlCamera {
     private final Matrix4f viewProjMatrix = new Matrix4f().identity();

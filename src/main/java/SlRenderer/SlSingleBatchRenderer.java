@@ -1,8 +1,8 @@
 package SlRenderer;
 
-import CSC133.SlCamera;
-import CSC133.SlMetaUI;
-import CSC133.SlWindow;
+import SlGoL.SlCamera;
+import SlGoL.SlMetaUI;
+import SlGoL.SlWindow;
 import SlGoLBoard.SlGoLBoardLive;
 import SlListeners.SlEventHandler;
 import org.joml.Matrix4f;
@@ -24,7 +24,7 @@ import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glUniform3f;
 
-import static CSC133.Spot.*;
+import static SlGoL.Spot.*;
 
 public class SlSingleBatchRenderer {
     private static final int OGL_MATRIX_SIZE = 16;

@@ -23,7 +23,7 @@ project.ext.jomlVersion = "1.10.5"
 //project.ext.lwjgl3-awtVersion = "0.1.8"
 project.ext.steamworks4jVersion = "1.9.0"
 //project.ext.steamworks4j-serverVersion = "1.9.0"
-project.ext.lwjglNatives = "natives-linux"
+project.ext.lwjglNatives = "natives-linux" // set to "natives-windows" for Windows compatability
 dependencies {
     implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
     implementation "org.lwjgl:lwjgl"
