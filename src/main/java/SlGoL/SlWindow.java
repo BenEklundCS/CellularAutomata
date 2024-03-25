@@ -9,7 +9,7 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.glViewport;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-import static CSC133.Spot.*;
+import static SlGoL.Spot.*;
 
 // put window stuff here
 public class SlWindow {
