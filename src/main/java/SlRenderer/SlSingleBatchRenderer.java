@@ -264,6 +264,9 @@ public class SlSingleBatchRenderer {
             }  //  for (int i = 0; i < NUM_POLY_ROWS * NUM_POLY_COLS; ++i)
             glfwSwapBuffers(WINDOW);
 
+            glDeleteBuffers(ibo);
+            glDeleteBuffers(vbo);
+
             end_render_time = System.currentTimeMillis();
 
             if (FPS) {
