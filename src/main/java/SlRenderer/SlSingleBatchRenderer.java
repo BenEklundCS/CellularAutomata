@@ -57,8 +57,9 @@ public class SlSingleBatchRenderer {
         }
     } // void renderLoop()
     private void initOpenGL() {
-
-        final float BG_RED = 0.0f;
+        // og: 0.0f, 0.0f, 0.3f, 1.0f;
+            // new: 0.8f, 0.8f, 0.8f, 1.0f
+        final float BG_RED = 0.2f;
         final float BG_GREEN = 0.0f;
         final float BG_BLUE = 0.3f;
         final float BG_ALPHA = 1.0f;
@@ -211,10 +212,9 @@ public class SlSingleBatchRenderer {
             // Vertices / Indices generator
             //
 
-            SlGridOfSquares grid = new SlGridOfSquares(MAX_ROWS, MAX_COLS);
-
-            float[] vertices = grid.getVertices();
-            int[] indices = grid.getIndices();
+            SlRenderable renderable = new SlGridOfSquares(MAX_ROWS, MAX_COLS);
+            float[] vertices = renderable.getVertices();
+            int[] indices = renderable.getIndices();
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             int vbo = glGenBuffers();

@@ -2,7 +2,7 @@ package SlRenderer;
 
 import static SlGoL.Spot.*;
 
-public class SlGridOfSquares {
+public class SlGridOfSquares implements SlRenderable {
     private final int verticesPerSquare = 4;
 
     private final int maxRows;

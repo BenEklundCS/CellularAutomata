@@ -31,8 +31,8 @@ public class Spot {
     public static int WIN_WIDTH = setWindowCalc(MAX_COLS); // MAX_COLS
     public static int WIN_HEIGHT = setWindowCalc(MAX_ROWS); // MAX_ROWS
 
-    public static Vector4f DEAD_COLOR = new Vector4f(0.0f, 0f, 1.0f, 1.0f); // 1 0 0 1
-    public static Vector4f LIVE_COLOR = new Vector4f(0.0f, 1.0f, 0.5f, 1.0f); // 0 1 0 1
+    public static Vector4f DEAD_COLOR = new Vector4f(0.5f, 0.0f, 0.8f, 1.0f); // 1 0 0 1
+    public static Vector4f LIVE_COLOR = new Vector4f(1.0f, 0.0f, 0.0f, 1.0f); // 0 1 0 1
 
     public static void printSpot() {
         System.out.println(WIN_WIDTH);
