@@ -1,6 +1,6 @@
 # Cellular Automata
 
-A Java-based implementation of cellular automata using LWJGL (Lightweight Java Game Library). This project was developed as part of a school assignment for the Computer Science program at California State University, Sacramento (CSUS).
+A Java-based implementation of cellular automata using LWJGL (Lightweight Java Game Library). 
 
 ---
 
