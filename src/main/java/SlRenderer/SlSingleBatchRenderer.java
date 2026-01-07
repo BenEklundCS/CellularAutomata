@@ -22,7 +22,6 @@ import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL20.*;
-import static org.lwjgl.opengl.GL20.glUniform3f;
 
 import static SlGoL.Spot.*;
 
@@ -30,7 +29,6 @@ public class SlSingleBatchRenderer {
     private static final int OGL_MATRIX_SIZE = 16;
     private final FloatBuffer myFloatBuffer = BufferUtils.createFloatBuffer(OGL_MATRIX_SIZE);
     private int vpMatLocation = 0;
-    private int renderColorLocation = 0;
 
     public SlSingleBatchRenderer() {
         slSingleBatchPrinter();
@@ -56,9 +54,10 @@ public class SlSingleBatchRenderer {
             glfwWaitEvents();
         }
     } // void renderLoop()
+
     private void initOpenGL() {
         // og: 0.0f, 0.0f, 0.3f, 1.0f;
-            // new: 0.8f, 0.8f, 0.8f, 1.0f
+        // new: 0.8f, 0.8f, 0.8f, 1.0f
         final float BG_RED = 0.2f;
         final float BG_GREEN = 0.0f;
         final float BG_BLUE = 0.3f;
@@ -80,6 +79,7 @@ public class SlSingleBatchRenderer {
                 "uniform mat4 viewProjMatrix;" +
                         "void main(void) {" +
                         " gl_Position = viewProjMatrix * gl_Vertex;" +
+                        " gl_FrontColor = gl_Color;" +
                         "}");
 
         glCompileShader(vs);
@@ -87,10 +87,9 @@ public class SlSingleBatchRenderer {
         int fs = glCreateShader(GL_FRAGMENT_SHADER);
 
         glShaderSource(fs,
-                "uniform vec3 color;" +
-                        "void main(void) {" +
+                "void main(void) {" +
                         // This guy sets the shape color :)
-                        " gl_FragColor = vec4(color, 1.0f);" + //" gl_FragColor = vec4(0.7f, 0.5f, 0.1f, 1.0f);"
+                        " gl_FragColor = gl_Color;" +
                         "}");
 
         glCompileShader(fs);
@@ -98,7 +97,6 @@ public class SlSingleBatchRenderer {
         glLinkProgram(shader_program);
         glUseProgram(shader_program);
         vpMatLocation = glGetUniformLocation(shader_program, "viewProjMatrix");
-        renderColorLocation = glGetUniformLocation(shader_program, "color");
     } // void initOpenGL()
 
     private void renderObjects() {
@@ -117,6 +115,30 @@ public class SlSingleBatchRenderer {
 
         SlCamera camera = new SlCamera();
 
+        //
+        // Vertices / Indices generator - CREATE ONCE OUTSIDE LOOP
+        //
+
+        SlRenderable renderable = new SlGridOfSquares(MAX_ROWS, MAX_COLS);
+        float[] vertices = renderable.getVertices();
+        int[] indices = renderable.getIndices();
+
+        int vbo = glGenBuffers();
+        int ibo = glGenBuffers();
+        int colorVbo = glGenBuffers();
+
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, BufferUtils.
+                createFloatBuffer(vertices.length).
+                put(vertices).flip(), GL_STATIC_DRAW);
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, BufferUtils.
+                createIntBuffer(indices.length).
+                put(indices).flip(), GL_STATIC_DRAW);
+
+        final int SIZE = 2;
+
         long start_render_time;
         long end_render_time;
 
@@ -133,8 +155,8 @@ public class SlSingleBatchRenderer {
             eventHandler.processEvents();
 
             // When processing a file save action, we do the following here:
-                // - render the scene to reflect the CURRENT game state
-                // - get a file name from the user
+            // - render the scene to reflect the CURRENT game state
+            // - get a file name from the user
 
             if (SAVE_TO_FILE) {
                 String file_name = SlMetaUI.getFileName();
@@ -155,8 +177,31 @@ public class SlSingleBatchRenderer {
                     int numRows = goLBoard.getNumRows();
                     int numCols = goLBoard.getNumCols();
                     // Apply the new dimensions to the engine state
-                        // MUST BE CALLED
+                    // MUST BE CALLED
                     SET_DIMENSIONS(numRows, numCols);
+
+                    // Regenerate buffers when dimensions change
+                    glDeleteBuffers(colorVbo);
+                    glDeleteBuffers(ibo);
+                    glDeleteBuffers(vbo);
+
+                    renderable = new SlGridOfSquares(MAX_ROWS, MAX_COLS);
+                    vertices = renderable.getVertices();
+                    indices = renderable.getIndices();
+
+                    vbo = glGenBuffers();
+                    ibo = glGenBuffers();
+                    colorVbo = glGenBuffers();
+
+                    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+                    glBufferData(GL_ARRAY_BUFFER, BufferUtils.
+                            createFloatBuffer(vertices.length).
+                            put(vertices).flip(), GL_STATIC_DRAW);
+
+                    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+                    glBufferData(GL_ELEMENT_ARRAY_BUFFER, BufferUtils.
+                            createIntBuffer(indices.length).
+                            put(indices).flip(), GL_STATIC_DRAW);
                 }
                 LOAD_FROM_FILE = false;
                 // Render the scene a few times to ensure GL catches up with the new Game State
@@ -208,31 +253,7 @@ public class SlSingleBatchRenderer {
                 glfwWaitEventsTimeout(0.1);
             }
 
-            //
-            // Vertices / Indices generator
-            //
-
-            SlRenderable renderable = new SlGridOfSquares(MAX_ROWS, MAX_COLS);
-            float[] vertices = renderable.getVertices();
-            int[] indices = renderable.getIndices();
-
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            int vbo = glGenBuffers();
-            int ibo = glGenBuffers();
-
-            glBindBuffer(GL_ARRAY_BUFFER, vbo);
-            glBufferData(GL_ARRAY_BUFFER, BufferUtils.
-                    createFloatBuffer(vertices.length).
-                    put(vertices).flip(), GL_STATIC_DRAW);
-            glEnableClientState(GL_VERTEX_ARRAY);
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, BufferUtils.
-                    createIntBuffer(indices.length).
-                    put(indices).flip(), GL_STATIC_DRAW);
-
-            final int SIZE = 2;
-
-            glVertexPointer(SIZE, GL_FLOAT, 0, 0L);
 
             //
             // Use the camera to setProjectionOrtho and generate a viewProjMatrix
@@ -248,24 +269,47 @@ public class SlSingleBatchRenderer {
             // Color squares using GoL rules
             //
 
-            int ibps = 24;
-            int dvps = 6;
+            int verticesPerSquare = 4;
+            float[] colors = new float[MAX_ROWS * MAX_COLS * verticesPerSquare * 3];
 
             for (int i = 0; i < MAX_ROWS * MAX_COLS; ++i) {
                 int currRow = i / MAX_COLS;
                 int currCol = i % MAX_COLS;
 
+                float r, g, b;
                 if (goLBoard.isAlive(currRow, currCol)) {
-                    glUniform3f(renderColorLocation, LIVE_COLOR.x, LIVE_COLOR.y, LIVE_COLOR.z);
+                    r = LIVE_COLOR.x;
+                    g = LIVE_COLOR.y;
+                    b = LIVE_COLOR.z;
                 } else {
-                    glUniform3f(renderColorLocation, DEAD_COLOR.x, DEAD_COLOR.y, DEAD_COLOR.z);
+                    r = DEAD_COLOR.x;
+                    g = DEAD_COLOR.y;
+                    b = DEAD_COLOR.z;
                 }
-                glDrawElements(GL_TRIANGLES, dvps, GL_UNSIGNED_INT, (long) ibps * i);
-            }  //  for (int i = 0; i < NUM_POLY_ROWS * NUM_POLY_COLS; ++i)
-            glfwSwapBuffers(WINDOW);
 
-            glDeleteBuffers(ibo);
-            glDeleteBuffers(vbo);
+                for (int v = 0; v < verticesPerSquare; v++) {
+                    int idx = (i * verticesPerSquare + v) * 3;
+                    colors[idx] = r;
+                    colors[idx + 1] = g;
+                    colors[idx + 2] = b;
+                }
+            }  //  for (int i = 0; i < NUM_POLY_ROWS * NUM_POLY_COLS; ++i)
+
+            glBindBuffer(GL_ARRAY_BUFFER, colorVbo);
+            glBufferData(GL_ARRAY_BUFFER, BufferUtils.
+                    createFloatBuffer(colors.length).
+                    put(colors).flip(), GL_DYNAMIC_DRAW);
+
+            glEnableClientState(GL_COLOR_ARRAY);
+            glColorPointer(3, GL_FLOAT, 0, 0L);
+
+            glBindBuffer(GL_ARRAY_BUFFER, vbo);
+            glEnableClientState(GL_VERTEX_ARRAY);
+            glVertexPointer(SIZE, GL_FLOAT, 0, 0L);
+
+            glDrawElements(GL_TRIANGLES, indices.length, GL_UNSIGNED_INT, 0L);
+
+            glfwSwapBuffers(WINDOW);
 
             end_render_time = System.currentTimeMillis();
 
@@ -273,7 +317,13 @@ public class SlSingleBatchRenderer {
                 SlMetaUI.fps(start_render_time, end_render_time);
             }
         }
+
+        // Cleanup buffers after render loop ends
+        glDeleteBuffers(colorVbo);
+        glDeleteBuffers(ibo);
+        glDeleteBuffers(vbo);
     } // renderObjects
+
     private void slSingleBatchPrinter() {
         System.out.println("Call to slSingleBatchRenderer:: () == received!");
     }
